@@ -18,15 +18,15 @@ void print_board(Board board) {
 
 void print_snake(Snake snake) {
     Head *current = &snake.head;
+
     while (current != NULL) {
-        printf("Snake segment at (%d, %d)\n", current->x, current->y);
+        place_segment(current->x, current->y);
         current = current->next;
     }
 }
 
 void print_game_state(Board board, Snake snake) {
-    printf("Board dimensions: %dx%d\n", board.width, board.height);
-    printf("Snake length: %d, health: %d\n", snake.length, snake.health);
+    print_board(board);
     print_snake(snake);
 }
 
