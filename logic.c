@@ -11,10 +11,15 @@ void update_snake(Snake *snake, Board board) {
         printf("Game Over! Snake hit the wall.\n");
         exit(EXIT_FAILURE);
     }
-
+    // Check for collisions with itself
+    Head *current = &snake->head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
     // Update the rest of the snake's body segments
     Head *current = &snake->head;
     while (current->next != NULL) {
+        place_segment(current->x, current->y);
         current = current->next;
     }
 }
@@ -25,7 +30,7 @@ void place_segment(int x, int y) {
     printf("Placing segment at (%d, %d)\n", x, y);
 }
 
-void calculate next_position(Snake *snake, int direction) {
+void calculate_next_position(Snake *snake, int direction) {
     // Calculate the next position of the snake's head based on the direction
     switch (direction) {
         case 0: // Up

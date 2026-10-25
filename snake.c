@@ -8,6 +8,7 @@ void run_game() {
         print_game_state(board, snake);
         int direction = input_direction();
         if (direction != -1) {
+            calculate_next_position(&snake, direction);
             update_snake(&snake, board);
         }
         usleep(200000); // Sleep for 200ms
