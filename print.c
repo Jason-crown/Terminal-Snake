@@ -15,12 +15,16 @@ void print_board(Board board) {
     printf("%c", 188);
     printf("\n");
 }
-
+void print_segment(int x, int y) {
+    // Move the cursor to the specified position
+    printf("\033[%d;%dH", y + 1, x + 1); // ANSI escape code to move cursor
+    printf("O"); // Print the snake segment
+}
 void print_snake(Snake snake) {
     Head *current = &snake.head;
 
     while (current != NULL) {
-        place_segment(current->x, current->y);
+        print_segment(current->x, current->y);
         current = current->next;
     }
 }

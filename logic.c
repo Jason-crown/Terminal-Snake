@@ -12,6 +12,17 @@ void update_snake(Snake *snake, Board board) {
         exit(EXIT_FAILURE);
     }
     // Check for collisions with itself
+    // make sure not to check while the snake is still growing (i.e., when length is 1)
+    if (snake->length > 1) {
+        Head *current = &snake->head;
+        while (current->next != NULL) {
+            current = current->next;
+            if (current->x == snake->head.x && current->y == snake->head.y) {
+                printf("Game Over! Snake collided with itself.\n");
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
     Head *current = &snake->head;
     while (current->next != NULL) {
         current = current->next;
@@ -27,6 +38,7 @@ void update_snake(Snake *snake, Board board) {
 void place_segment(int x, int y) {
     // This function would place a segment of the snake on the board
     // For now, we will just print the coordinates
+    // In a real implementation, you would update the board's data structure to reflect the snake's position
     printf("Placing segment at (%d, %d)\n", x, y);
 }
 
