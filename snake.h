@@ -3,7 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+#include <stdbool.h>
+#include <ctype.h>
 
 #define BOARD_WIDTH 7
 #define BOARD_HEIGHT 6
@@ -17,12 +21,16 @@ typedef struct Snake {
 }Snake;
 
 typedef struct Head {
+    int x;
+    int y;
     Head *next;
 }Head;
 
 typedef struct Board {
     int width;
     int height;
+    int xoffset;
+    int yoffset;
 }Board;
 
 #endif
