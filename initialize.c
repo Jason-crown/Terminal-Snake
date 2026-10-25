@@ -8,6 +8,7 @@ Snake initialize_snake() {
     snake.head.y = 5;
     return snake;
 }
+
 Board initialize_board() {
     Board board;
     board.width = BOARD_WIDTH;
