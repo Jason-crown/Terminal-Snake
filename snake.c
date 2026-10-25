@@ -1,5 +1,18 @@
 #include "snake.h"
 
+void run_game() {
+    Board board = initialize_board();
+    Snake snake = initialize_snake();
+
+    while (true) {
+        print_game_state(board, snake);
+        int direction = input_direction();
+        if (direction != -1) {
+            update_snake(&snake, board);
+        }
+        usleep(200000); // Sleep for 200ms
+    }
+}
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {

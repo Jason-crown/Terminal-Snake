@@ -18,3 +18,4 @@ void update_snake(Snake *snake, Board board) {
         current = current->next;
     }
 }
+
