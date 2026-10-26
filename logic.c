@@ -26,20 +26,14 @@ void update_snake(Snake *snake, Board board) {
     Head *current = &snake->head;
     while (current->next != NULL) {
         current = current->next;
+
     }
     // Update the rest of the snake's body segments
     Head *current = &snake->head;
     while (current->next != NULL) {
-        place_segment(current->x, current->y);
+        //place_segment(&current->x, &current->y);
         current = current->next;
     }
-}
-
-void place_segment(int x, int y) {
-    // This function would place a segment of the snake on the board
-    // For now, we will just print the coordinates
-    // In a real implementation, you would update the board's data structure to reflect the snake's position
-    printf("Placing segment at (%d, %d)\n", x, y);
 }
 
 void calculate_next_position(Snake *snake, int direction) {
@@ -61,4 +55,25 @@ void calculate_next_position(Snake *snake, int direction) {
             printf("Invalid direction!\n");
             break;
     }
+}
+
+void grow_snake(Snake *snake) {
+    // Add a new segment to the snake's body
+    Head *new_segment = (Head *)malloc(sizeof(Head));
+    if (new_segment == NULL) {
+        printf("Memory allocation failed!\n");
+        exit(EXIT_FAILURE);
+    }
+    new_segment->x = snake->head.x; // New segment starts at the head's position
+    new_segment->y = snake->head.y;
+    new_segment->next = NULL;
+
+    // Find the last segment of the snake
+    Head *current = &snake->head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = new_segment; // Link the new segment to the end of the snake
+
+    snake->length += 1; // Increase the length of the snake
 }

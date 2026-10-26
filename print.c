@@ -4,22 +4,25 @@ void print_board(Board board) {
     printf("%c", 201);
     for (int i = 0; i < board.height; i++) {
         for (int j = 0; j < board.width; j++) {
-            printf("%c", 186);
+            printf("%c", 186); // Left border
+            printf(" "); // Empty space for the board
         }
         printf("\n");
     }
-    printf("%c", 200);
+    printf("%c", 200); // Bottom left corner
     for (int j = 0; j < board.width; j++) {
-        printf("%c", 205);
+        printf("%c", 205); // Bottom border
     }
-    printf("%c", 188);
+    printf("%c", 188); // Bottom right corner
     printf("\n");
 }
+
 void print_segment(int x, int y) {
     // Move the cursor to the specified position
     printf("\033[%d;%dH", y + 1, x + 1); // ANSI escape code to move cursor
     printf("O"); // Print the snake segment
 }
+
 void print_snake(Snake snake) {
     Head *current = &snake.head;
 
