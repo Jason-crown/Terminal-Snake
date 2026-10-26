@@ -3,16 +3,24 @@
 void run_game() {
     Board board = initialize_board();
     Snake snake = initialize_snake();
-
+    int Last_direction = -1;
+    grow_snake(&snake);
     while (true) {
         printf("\x1b[3J\x1b[H\x1b[2J");
         print_game_state(board, snake);
         int direction = input_direction();
         if (direction != -1) {
-            calculate_next_position(&snake, direction);
-            update_snake(&snake, board);
+            Head *current = &snake.head;
+
+            //calculate_next_position(&snake, direction);
+            while (current->next != NULL) {
+                calculate_next_node_position(&current, direction);
+                current = current->next;
+            }            
+            update_snake(&snake, board, direction);
         }
         usleep(200000); // Sleep for 200ms
+        Last_direction = direction;
     }
 }
 

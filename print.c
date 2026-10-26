@@ -1,7 +1,7 @@
 #include "snake.h"
 
 void print_board(Board board) {
-    
+    printf("\x1B[?25l");
     printf("%c", 201);
     for (int j = 0; j < board.width; j++) {
         printf("%c", 205); // top border
@@ -24,8 +24,9 @@ void print_board(Board board) {
 
 void print_segment(int x, int y) {
     // Move the cursor to the specified position
-    printf("\033[%d;%dH", x+1, y+1); // ANSI escape code to move cursor
-    printf("%d", x); // Print the snake segment
+    printf("\033[%d;%dH", y+1, x+1); // ANSI escape code to move cursor
+    printf("o");
+    //printf("%d%d", x,y); // Print the snake segment
 }
 
 void print_snake(Snake snake) {
@@ -33,6 +34,7 @@ void print_snake(Snake snake) {
     if (current == NULL){
         return;
     }
+    
     while (current != NULL) {
         print_segment(current->x, current->y);
         current = current->next;

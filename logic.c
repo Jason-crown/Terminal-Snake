@@ -1,23 +1,22 @@
 #include "snake.h"
 
-void update_snake(Snake *snake, Board board) {
+void update_snake(Snake *snake, Board board, int direction) {
     // Move the snake's head in the current direction
-    // For simplicity, let's assume the snake moves right for now
-    snake->head.x += 1;
 
     // Check for collisions with the board boundaries
-    if (snake->head.x < 0 || snake->head.x >= board.width || snake->head.y < 0 || snake->head.y >= board.height) {
+    if (snake->head.x <= 0 || snake->head.x > board.width || snake->head.y <= 0 || snake->head.y > board.height) {
         char* condition = "non";
-        if (snake->head.x < 0) condition = "head hit left";
+        if (snake->head.x <= 0) condition = "head hit left";
         if (snake->head.x > board.width) condition = "head hit right";
-        if (snake->head.y < 0) condition = "head hit top";
+        if (snake->head.y <= 0) condition = "head hit top";
         if (snake->head.y > board.height) condition = "head hit bottom";
-        printf("Game Over! Snake hit the wall.\n,%s", condition);
+        printf("Game Over! Snake hit the wall. %s\n,", condition);
         exit(EXIT_FAILURE);
     }
+
     // Check for collisions with itself
     // make sure not to check while the snake is still growing (i.e., when length is 1)
-    if (snake->length > 1) {
+    /*if (snake->length > 1) {
         Head *current = &snake->head;
         while (current->next != NULL) {
             current = current->next;
@@ -26,14 +25,10 @@ void update_snake(Snake *snake, Board board) {
                 exit(EXIT_FAILURE);
             }
         }
-    }
-
+    }*/
+    
     // Update the rest of the snake's body segments
-    Head *current = &snake->head;
-    while (current->next != NULL) {
-        //place_segment(&current->x, &current->y);
-        current = current->next;
-    }
+
 }
 
 void calculate_next_position(Snake *snake, int direction) {
@@ -50,6 +45,32 @@ void calculate_next_position(Snake *snake, int direction) {
             break;
         case 3: // Right
             snake->head.x += 1;
+            break;
+        default:
+            printf("Invalid direction!\n");
+            break;
+    }
+}
+
+void calculate_next_node_position(Head **node, int direction) {
+    // Calculate the next position of the segment of the snake based on the previous direction
+    (*node)->next->y = (*node)->y;
+    (*node)->next->y = (*node)->y;
+    (*node)->next->x = (*node)->x;
+    (*node)->next->x = (*node)->x;
+
+    switch (direction) {
+        case 0: // Up
+            (*node)->y -= 1;
+            break;
+        case 1: // Down
+            (*node)->y += 1;
+            break;
+        case 2: // Left
+            (*node)->x -= 1;
+            break;
+        case 3: // Right
+            (*node)->x += 1;
             break;
         default:
             printf("Invalid direction!\n");
