@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -std=c11 -Wall -Wextra -pedantic
 TARGET = Snake
-OBJ = snake.o board.o initialize.o logic.o movement.o print.o
-EXE = nake.exe
+OBJ = main.o board.o initialize.o logic.o movement.o print.o
+EXE = Snake.exe
 
 ifeq ($(OS), Windows_NT)
     DELETE = del
@@ -15,7 +15,7 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
-%.o: snake.h
+%.o: %.c snake.h
 	$(CC) $(CFLAGS) -Iinclude -c $< -o $@
 
 clean:

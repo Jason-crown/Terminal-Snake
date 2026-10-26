@@ -8,9 +8,10 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include <conio.h>
 
-#define BOARD_WIDTH 7
-#define BOARD_HEIGHT 6
+#define BOARD_WIDTH 10
+#define BOARD_HEIGHT 5
 #define BOARD_XOFFSET 12
 #define BOARD_YOFFSET 6
 

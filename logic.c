@@ -23,11 +23,7 @@ void update_snake(Snake *snake, Board board) {
             }
         }
     }
-    Head *current = &snake->head;
-    while (current->next != NULL) {
-        current = current->next;
 
-    }
     // Update the rest of the snake's body segments
     Head *current = &snake->head;
     while (current->next != NULL) {
@@ -77,3 +73,4 @@ void grow_snake(Snake *snake) {
 
     snake->length += 1; // Increase the length of the snake
 }
+

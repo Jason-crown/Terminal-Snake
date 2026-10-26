@@ -6,6 +6,7 @@ Snake initialize_snake() {
     snake.health = 100;
     snake.head.x = 5;
     snake.head.y = 5;
+    snake.head.next = NULL;
     return snake;
 }
 

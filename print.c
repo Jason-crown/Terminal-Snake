@@ -1,13 +1,19 @@
 #include "snake.h"
 
 void print_board(Board board) {
+    
     printf("%c", 201);
-    for (int i = 0; i < board.height; i++) {
+    for (int j = 0; j < board.width; j++) {
+        printf("%c", 205); // top border
+    }
+    printf("%c\n", 187);
+    for (int i = 0; i < board.height; i++){
+        printf("%c", 186); // Left border
         for (int j = 0; j < board.width; j++) {
-            printf("%c", 186); // Left border
+            
             printf(" "); // Empty space for the board
         }
-        printf("\n");
+        printf("%c\n", 186); // right border
     }
     printf("%c", 200); // Bottom left corner
     for (int j = 0; j < board.width; j++) {
@@ -19,13 +25,15 @@ void print_board(Board board) {
 
 void print_segment(int x, int y) {
     // Move the cursor to the specified position
-    printf("\033[%d;%dH", y + 1, x + 1); // ANSI escape code to move cursor
+    printf("\033[%d;%dH", 3+x, 1+y); // ANSI escape code to move cursor
     printf("O"); // Print the snake segment
 }
 
 void print_snake(Snake snake) {
     Head *current = &snake.head;
-
+    if (current == NULL){
+        return;
+    }
     while (current != NULL) {
         print_segment(current->x, current->y);
         current = current->next;
