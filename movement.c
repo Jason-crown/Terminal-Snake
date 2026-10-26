@@ -1,7 +1,7 @@
 #include "snake.h"
 
 int input_direction() {
-    int ch = getchar();
+    int ch = getch();
     switch (ch) {
         case 'w':
             return 0; // Up

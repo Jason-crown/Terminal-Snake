@@ -10,7 +10,6 @@ void print_board(Board board) {
     for (int i = 0; i < board.height; i++){
         printf("%c", 186); // Left border
         for (int j = 0; j < board.width; j++) {
-            
             printf(" "); // Empty space for the board
         }
         printf("%c\n", 186); // right border
@@ -25,8 +24,8 @@ void print_board(Board board) {
 
 void print_segment(int x, int y) {
     // Move the cursor to the specified position
-    printf("\033[%d;%dH", 3+x, 1+y); // ANSI escape code to move cursor
-    printf("O"); // Print the snake segment
+    printf("\033[%d;%dH", x+1, y+1); // ANSI escape code to move cursor
+    printf("%d", x); // Print the snake segment
 }
 
 void print_snake(Snake snake) {

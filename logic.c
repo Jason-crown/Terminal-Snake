@@ -6,9 +6,13 @@ void update_snake(Snake *snake, Board board) {
     snake->head.x += 1;
 
     // Check for collisions with the board boundaries
-    if (snake->head.x < 0 || snake->head.x >= board.width ||
-        snake->head.y < 0 || snake->head.y >= board.height) {
-        printf("Game Over! Snake hit the wall.\n");
+    if (snake->head.x < 0 || snake->head.x >= board.width || snake->head.y < 0 || snake->head.y >= board.height) {
+        char* condition = "non";
+        if (snake->head.x < 0) condition = "head hit left";
+        if (snake->head.x > board.width) condition = "head hit right";
+        if (snake->head.y < 0) condition = "head hit top";
+        if (snake->head.y > board.height) condition = "head hit bottom";
+        printf("Game Over! Snake hit the wall.\n,%s", condition);
         exit(EXIT_FAILURE);
     }
     // Check for collisions with itself
