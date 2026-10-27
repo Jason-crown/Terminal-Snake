@@ -73,11 +73,13 @@ void calculate_next_node_position(Head **node, int direction) {
             printf("Invalid direction!\n");
             break;
     }
-    if ((*node)->next->y+calc_y==(*node)->y && (*node)->next->x+calc_x==(*node)->x)
-    (*node)->next->y = (*node)->y;
-    (*node)->next->y = (*node)->y;
-    (*node)->next->x = (*node)->x;
-    (*node)->next->x = (*node)->x;        
+    if ((*node)->next->y+calc_y==(*node)->y && (*node)->next->x+calc_x==(*node)->x) {
+        (*node)->next->y = (*node)->y;
+        (*node)->next->y = (*node)->y;
+        (*node)->next->x = (*node)->x;
+        (*node)->next->x = (*node)->x;        
+    }
+        
 
 }
 
