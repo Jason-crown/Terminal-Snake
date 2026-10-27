@@ -54,28 +54,30 @@ void calculate_next_position(Snake *snake, int direction) {
 
 void calculate_next_node_position(Head **node, int direction) {
     // Calculate the next position of the segment of the snake based on the previous direction
-    (*node)->next->y = (*node)->y;
-    (*node)->next->y = (*node)->y;
-    (*node)->next->x = (*node)->x;
-    (*node)->next->x = (*node)->x;
-
+    int calc_y = -1;
     switch (direction) {
         case 0: // Up
-            (*node)->y -= 1;
+            calc_y -= 1;
             break;
         case 1: // Down
-            (*node)->y += 1;
+            calc_y += 1;
             break;
         case 2: // Left
-            (*node)->x -= 1;
+            calc_x -= 1;
             break;
         case 3: // Right
-            (*node)->x += 1;
+            calc_x += 1;
             break;
         default:
             printf("Invalid direction!\n");
             break;
     }
+    if ((*node)->next->y)
+    (*node)->next->y = (*node)->y;
+    (*node)->next->y = (*node)->y;
+    (*node)->next->x = (*node)->x;
+    (*node)->next->x = (*node)->x;        
+
 }
 
 void grow_snake(Snake *snake) {

@@ -3,6 +3,8 @@
 int input_direction() {
     int ch = getch();
     switch (ch) {
+        case 'G':
+            return -3;
         case 'w':
             return 0; // Up
         case 's':
