@@ -13,7 +13,13 @@ void update_snake(Snake *snake, Board board, int direction) {
         printf("Game Over! Snake hit the wall. %s\n,", condition);
         exit(EXIT_FAILURE);
     }
-
+    Head *current = &snake->head;
+    while(current->next != NULL) {
+        if (current->next->x != current->x || current->next->y != current->y) {
+            current->next->locked = false;
+        }
+        current = current->next;
+    }
     // Check for collisions with itself
     // make sure not to check while the snake is still growing (i.e., when length is 1)
     /*if (snake->length > 1) {
@@ -54,32 +60,11 @@ void calculate_next_position(Snake *snake, int direction) {
 
 void calculate_next_node_position(Head **node, int direction) {
     // Calculate the next position of the segment of the snake based on the previous direction
-    int calc_y = 0;
-    int calc_x = 0;
-    switch (direction) {
-        case 0: // Up
-            calc_y =-1;
-            break;
-        case 1: // Down
-            calc_y =1;
-            break;
-        case 2: // Left
-            calc_x =-1;
-            break;
-        case 3: // Right
-            calc_x =1;
-            break;
-        default:
-            printf("Invalid direction!\n");
-            break;
-    }
-    if ((*node)->next->y+calc_y==(*node)->y && (*node)->next->x+calc_x==(*node)->x) {
-        (*node)->next->y = (*node)->y;
-        (*node)->next->y = (*node)->y;
-        (*node)->next->x = (*node)->x;
-        (*node)->next->x = (*node)->x;        
-    }
-        
+    if(SNO())
+    (*node)->next->y = (*node)->y;
+    (*node)->next->y = (*node)->y;
+    (*node)->next->x = (*node)->x;
+    (*node)->next->x = (*node)->x;       
 
 }
 
@@ -92,6 +77,7 @@ void grow_snake(Snake *snake) {
     }
     new_segment->x = snake->head.x; // New segment starts at the head's position
     new_segment->y = snake->head.y;
+    new_segment->locked = true;
     new_segment->next = NULL;
 
     // Find the last segment of the snake

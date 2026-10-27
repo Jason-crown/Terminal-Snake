@@ -20,6 +20,7 @@
 typedef struct Head {
     int x;
     int y;
+    bool locked;
     struct Head *next;
 }Head;
 
