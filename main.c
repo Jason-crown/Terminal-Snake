@@ -11,16 +11,10 @@ void run_game() {
         if (direction == -3) grow_snake(&snake);
         if (direction != -1 && direction != -3) {
             Head *current = &snake.head;
-            calculate_next_node_position(&current, direction);
-            calculate_next_node_position(&current->next, direction);
-            calculate_next_node_position(&current->next->next, direction);
-            calculate_next_node_position(&current->next->next->next, direction);
-            //while (current->next != NULL) {
-                
-                
-                 
-                //current = current->next;
-            //}
+            while (current->next != NULL) {
+                calculate_next_node_position(&current, direction);
+                current = current->next;
+            }
             calculate_next_position(&snake, direction);           
             update_snake(&snake, board, direction);
         }

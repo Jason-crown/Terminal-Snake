@@ -16,7 +16,7 @@ void update_snake(Snake *snake, Board board, int direction) {
     Head *current = &snake->head;
     while(current->next != NULL) {
         if (current->next->x != current->x || current->next->y != current->y) {
-            current->next->locked = false;
+            //current->next->locked = false;
         }
         current = current->next;
     }
@@ -60,12 +60,14 @@ void calculate_next_position(Snake *snake, int direction) {
 
 void calculate_next_node_position(Head **node, int direction) {
     // Calculate the next position of the segment of the snake based on the previous direction
-    if(SNO())
-    (*node)->next->y = (*node)->y;
-    (*node)->next->y = (*node)->y;
-    (*node)->next->x = (*node)->x;
-    (*node)->next->x = (*node)->x;       
-
+    if((*node)->next->locked) {
+        return;
+    } else {
+        (*node)->next->y = (*node)->y;
+        (*node)->next->y = (*node)->y;
+        (*node)->next->x = (*node)->x;
+        (*node)->next->x = (*node)->x;          
+    }
 }
 
 void grow_snake(Snake *snake) {
