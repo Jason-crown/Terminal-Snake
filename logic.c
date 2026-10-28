@@ -77,16 +77,17 @@ void grow_snake(Snake *snake) {
         printf("Memory allocation failed!\n");
         exit(EXIT_FAILURE);
     }
-    new_segment->x = snake->head.x; // New segment starts at the head's position
-    new_segment->y = snake->head.y;
-    new_segment->locked = true;
-    new_segment->next = NULL;
-
-    // Find the last segment of the snake
     Head *current = &snake->head;
     while (current->next != NULL) {
         current = current->next;
     }
+    new_segment->x = current->x; // New segment starts at the head's position
+    new_segment->y = current->y;
+    new_segment->locked = true;
+    new_segment->next = NULL;
+
+    // Find the last segment of the snake
+
     current->next = new_segment; // Link the new segment to the end of the snake
 
     snake->length += 1; // Increase the length of the snake
