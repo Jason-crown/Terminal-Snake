@@ -15,11 +15,9 @@ void update_snake(Snake *snake, Board board, int direction) {
     }
     Head *current = &snake->head;
     while(current->next != NULL) {
-        if (current->next->x != current->x || current->next->y != current->y) {
-            current->next->locked = false;
-        }
         current = current->next;
     }
+    current->locked = false;
     // Check for collisions with itself
     // make sure not to check while the snake is still growing (i.e., when length is 1)
     /*if (snake->length > 1) {
@@ -58,21 +56,8 @@ void calculate_next_position(Snake *snake, int direction) {
     }
 }
 
-void calculate_next_node_position(Snake *snake, Head **node, int direction) {
+void calculate_next_node_position(Snake *snake, Head *node) {
     // Calculate the next position of the segment of the snake based on the previous direction
-    Head *head = &snake->head;
-    head->next->y = head->y;    
-    head->next->x = head->x;
-
-
-    Head *current = &snake->head;
-    Head *temp = &snake->head;
-    while(current->next != NULL) {
-        temp = current;
-        current=current->next;
-    }
-    current->y = temp->y;
-    current->x = temp->x;          
 }
 
 void grow_snake(Snake *snake) {
@@ -86,9 +71,9 @@ void grow_snake(Snake *snake) {
     while (current->next != NULL) {
         current = current->next;
     }
-    new_segment->x = current->x-1; // New segment starts at the head's position
+    new_segment->x = current->x; // New segment starts at the head's position
     new_segment->y = current->y;
-    new_segment->locked = false;
+    new_segment->locked = true;
     new_segment->next = NULL;
 
     // Find the last segment of the snake
