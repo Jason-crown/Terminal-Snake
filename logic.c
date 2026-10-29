@@ -13,14 +13,14 @@ void update_snake(Snake *snake, Board board, int direction) {
         printf("Game Over! Snake hit the wall. %s\n,", condition);
         exit(EXIT_FAILURE);
     }
-    Head *current = &snake->head;
-    while(current->next != NULL) {
-        current = current->next;
-    }
-    current->locked = false;
+    //Head *current = &snake->head;
+   // while(current->next != NULL) {
+    //    current = current->next;
+   // }
+    //current->locked = false;
     // Check for collisions with itself
     // make sure not to check while the snake is still growing (i.e., when length is 1)
-    if (snake->length > 1) {
+    /*if (snake->length > 1) {
         Head *current = &snake->head;
         while (current->next != NULL) {
             current = current->next;
@@ -29,7 +29,7 @@ void update_snake(Snake *snake, Board board, int direction) {
                 exit(EXIT_FAILURE);
             }
         }
-    }
+    }*/
     
     // Update the rest of the snake's body segments
 
@@ -37,32 +37,39 @@ void update_snake(Snake *snake, Board board, int direction) {
 
 void calculate_next_position(Snake *snake, int direction) {
     // Calculate the next position of the snake's head based on the direction
+    int direction_x = 0; 
+    int direction_y = 0;
     switch (direction) {
         case 0: // Up
             snake->head.y -= 1;
+            direction_y = -1;
             break;
         case 1: // Down
             snake->head.y += 1;
+            direction_y = 1;
             break;
         case 2: // Left
             snake->head.x -= 1;
+            direction_x = -1;
             break;
         case 3: // Right
             snake->head.x += 1;
+            direction_x = 1;
             break;
         default:
             printf("Invalid direction!\n");
             break;
     }
+    Head *temp = &snake->head;
+    while(temp->next != NULL) {
+        temp->x = snake->head.x;
+        temp->y = snake->head.y;
+        temp = temp->next;
+    }
 }
 
 void calculate_next_node_position(Snake *snake, Head *node) {
     // Calculate the next position of the segment of the snake based on the previous direction
-    if (node->next != NULL) {
-        node->x = node->next->x;
-        node->y = node->next->y;
-        calculate_next_node_position(snake, node->next);
-    }
 }
 
 void grow_snake(Snake *snake) {
