@@ -10,6 +10,7 @@ void run_game() {
         int direction = input_direction();
         if (direction == -3) grow_snake(&snake);
         if (direction != -1 && direction != -3) {
+            calculate_next_node_position(&snake, &snake.head, snake.length);
             calculate_next_position(&snake, direction);           
             update_snake(&snake, board, direction);
         }
