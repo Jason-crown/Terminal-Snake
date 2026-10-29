@@ -60,16 +60,18 @@ void calculate_next_position(Snake *snake, int direction) {
             printf("Invalid direction!\n");
             break;
     }
-    Head *temp = &snake->head;
-    while(temp->next != NULL) {
-        temp->x = snake->head.x;
-        temp->y = snake->head.y;
-        temp = temp->next;
-    }
+
 }
 
 void calculate_next_node_position(Snake *snake, Head *node) {
     // Calculate the next position of the segment of the snake based on the previous direction
+    Head *current = &snake->head;
+    Head *right_before = &current;
+    while(current->next != NULL) {
+        
+        current = current->next;
+    }
+
 }
 
 void grow_snake(Snake *snake) {
