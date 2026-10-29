@@ -13,14 +13,8 @@ void update_snake(Snake *snake, Board board, int direction) {
         printf("Game Over! Snake hit the wall. %s\n,", condition);
         exit(EXIT_FAILURE);
     }
-    //Head *current = &snake->head;
-   // while(current->next != NULL) {
-    //    current = current->next;
-   // }
-    //current->locked = false;
     // Check for collisions with itself
-    // make sure not to check while the snake is still growing (i.e., when length is 1)
-    /*if (snake->length > 1) {
+    if (snake->length > 1) {
         Head *current = &snake->head;
         while (current->next != NULL) {
             current = current->next;
@@ -29,10 +23,7 @@ void update_snake(Snake *snake, Board board, int direction) {
                 exit(EXIT_FAILURE);
             }
         }
-    }*/
-    
-    // Update the rest of the snake's body segments
-
+    }
 }
 
 void calculate_next_position(Snake *snake, int direction) {
@@ -63,7 +54,7 @@ void calculate_next_position(Snake *snake, int direction) {
 
 }
 
-void calculate_next_node_position(Snake *snake, Head *node, int length_index) {
+void calculate_next_node_position(Snake *snake, int length_index) {
     // Calculate the next position of the segment of the snake based on the previous direction
     Head *current = &snake->head;
     Head *right_before = current;
@@ -71,12 +62,12 @@ void calculate_next_node_position(Snake *snake, Head *node, int length_index) {
         right_before = current;
         current = current->next;        
     }
-    if (current&&right_before) {
+    if (current && right_before) {
         current->x = right_before->x;
         current->y = right_before->y;
     }
     if (length_index > 0) {
-        calculate_next_node_position(snake, node, length_index-1);
+        calculate_next_node_position(snake, length_index-1);
     }
 }
 
@@ -90,7 +81,6 @@ void grow_snake(Snake *snake) {
     Head *current = &snake->head;
     new_segment->x = current->x; // New segment starts at the head's position
     new_segment->y = current->y;
-    new_segment->locked = false;
     new_segment->next = NULL;
 
     while (current->next != NULL) {

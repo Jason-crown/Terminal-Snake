@@ -2,31 +2,34 @@
 
 void print_board(Board board) {
     printf("\x1B[?25l");
-    printf("%c", 201);
+    printf("\x1b[92m%c", 201);
     for (int j = 0; j < board.width; j++) {
         printf("%c", 205); // top border
     }
-    printf("%c\n", 187);
+    printf("\x1b[92m%c\n", 187);
     for (int i = 0; i < board.height; i++){
-        printf("%c", 186); // Left border
+        printf("\x1b[92m%c", 186); // Left border
         for (int j = 0; j < board.width; j++) {
-            printf(" "); // Empty space for the board
+            printf("\x1b[42m \x1b[0m"); // Empty space for the board
         }
-        printf("%c\n", 186); // right border
+        printf("\x1b[92m%c\n", 186); // right border
     }
     printf("%c", 200); // Bottom left corner
     for (int j = 0; j < board.width; j++) {
-        printf("%c", 205); // Bottom border
+        printf("\x1b[92m%c", 205); // Bottom border
     }
-    printf("%c", 188); // Bottom right corner
+    printf("\x1b[92m%c\x1b[0m", 188); // Bottom right corner
     printf("\n");
 }
 
-void print_segment(int x, int y) {
+void print_segment(Head head, int x, int y) {
     // Move the cursor to the specified position
     printf("\033[%d;%dH", y+1, x+1); // ANSI escape code to move cursor
-    printf("o");
-    //printf("%d%d", x,y); // Print the snake segment
+    if(head.x == x && head.y == y){
+        printf("\x1b[91m%c\x1b[0m", 219);
+    } else{
+        printf("\x1b[31m%c\x1b[0m", 219);
+    }
 }
 
 void print_snake(Snake snake) {
@@ -36,12 +39,13 @@ void print_snake(Snake snake) {
     }
     
     while (current != NULL) {
-        print_segment(current->x, current->y);
+        print_segment(snake.head, current->x, current->y);
         current = current->next;
     }
 }
 
 void print_game_state(Board board, Snake snake) {
+    printf("\x1b[3J\x1b[H\x1b[2J");
     print_board(board);
     print_snake(snake);
 }
