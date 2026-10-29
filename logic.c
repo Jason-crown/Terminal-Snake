@@ -58,11 +58,11 @@ void calculate_next_position(Snake *snake, int direction) {
 
 void calculate_next_node_position(Snake *snake, Head *node) {
     // Calculate the next position of the segment of the snake based on the previous direction
-    Head *current = &node;
-    current->next->x = current->x;
-    current->next->y = current->y;
-    calculate_next_node_position(&snake, &current->next);
-    return 
+    if (node->next != NULL) {
+        node->x = node->next->x;
+        node->y = node->next->y;
+        calculate_next_node_position(snake, node->next);
+    }
 }
 
 void grow_snake(Snake *snake) {
@@ -73,14 +73,14 @@ void grow_snake(Snake *snake) {
         exit(EXIT_FAILURE);
     }
     Head *current = &snake->head;
-    while (current->next != NULL) {
-        current = current->next;
-    }
     new_segment->x = current->x; // New segment starts at the head's position
     new_segment->y = current->y;
     new_segment->locked = false;
     new_segment->next = NULL;
 
+    while (current->next != NULL) {
+        current = current->next;
+    }
     // Find the last segment of the snake
 
     current->next = new_segment; // Link the new segment to the end of the snake
