@@ -2,23 +2,23 @@
 
 void print_board(Board board) {
     printf("\x1B[?25l");
-    printf("\x1b[92m%c", 201);
+    printf("\x1b[102m\x1b[94m%c", 201);
     for (int j = 0; j < board.width; j++) {
         printf("%c", 205); // top border
     }
-    printf("\x1b[92m%c\n", 187);
+    printf("\x1b[102m\x1b[94m%c\n", 187);
     for (int i = 0; i < board.height; i++){
-        printf("\x1b[92m%c", 186); // Left border
+        printf("\x1b[102m\x1b[94m%c", 186); // Left border
         for (int j = 0; j < board.width; j++) {
             printf("\x1b[42m \x1b[0m"); // Empty space for the board
         }
-        printf("\x1b[92m%c\n", 186); // right border
+        printf("\x1b[102m\x1b[94m%c\n", 186); // right border
     }
     printf("%c", 200); // Bottom left corner
     for (int j = 0; j < board.width; j++) {
-        printf("\x1b[92m%c", 205); // Bottom border
+        printf("\x1b[102m\x1b[94m%c", 205); // Bottom border
     }
-    printf("\x1b[92m%c\x1b[0m", 188); // Bottom right corner
+    printf("\x1b[102m\x1b[94m%c\x1b[0m", 188); // Bottom right corner
     printf("\n");
 }
 
