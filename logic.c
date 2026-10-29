@@ -67,13 +67,17 @@ void calculate_next_node_position(Snake *snake, Head *node, int length_index) {
     // Calculate the next position of the segment of the snake based on the previous direction
     Head *current = &snake->head;
     Head *right_before = current;
-    while(length_index <= 1) {
+    for (int i = 0; i < length_index; i++) {
         right_before = current;
-        current = current->next;
+        current = current->next;        
     }
-    current->x = right_before->x;
-    current->y = right_before->y;
-    if (length_index > 1) calculate_next_node_position(snake, node, length_index-1);
+    if (current&&right_before) {
+        current->x = right_before->x;
+        current->y = right_before->y;
+    }
+    if (length_index > 0) {
+        calculate_next_node_position(snake, node, length_index-1);
+    }
 }
 
 void grow_snake(Snake *snake) {

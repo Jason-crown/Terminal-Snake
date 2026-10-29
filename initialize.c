@@ -2,7 +2,7 @@
 
 Snake initialize_snake() {
     Snake snake;
-    snake.length = 3;
+    snake.length = 1;
     snake.health = 100;
     snake.head.x = 3;
     snake.head.y = 3;
