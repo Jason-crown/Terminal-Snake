@@ -20,7 +20,7 @@ void update_snake(Snake *snake, Board board, int direction) {
     current->locked = false;
     // Check for collisions with itself
     // make sure not to check while the snake is still growing (i.e., when length is 1)
-    /*if (snake->length > 1) {
+    if (snake->length > 1) {
         Head *current = &snake->head;
         while (current->next != NULL) {
             current = current->next;
@@ -29,7 +29,7 @@ void update_snake(Snake *snake, Board board, int direction) {
                 exit(EXIT_FAILURE);
             }
         }
-    }*/
+    }
     
     // Update the rest of the snake's body segments
 
