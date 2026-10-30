@@ -37,20 +37,26 @@ typedef struct Board {
 }Board;
 
 void run_game();
+
 Board create_board(int width, int height, int xoffset, int yoffset);
+
 Snake initialize_snake();
 Board initialize_board();
+
+void grow_snake(Snake *snake);
 void update_snake(Snake *snake, Board board);
 void calculate_next_position(Snake *snake, int direction);
 void calculate_next_node_position(Snake *snake, int length_index);
-void grow_snake(Snake *snake);
+
+int handle_inputs(Snake* snake);
+
 void print_board(Board board);
 void print_segment(Head head, int x, int y);
-void print_snake(Snake snake);
-void print_game_state(Board board, Snake snake);
+
 void print_menu();
 void print_settings();
-void place_segment(int* prv_x, int* prv_y, int* cur_x, int* cur_y);
-int handle_inputs(Snake* snake);
+void print_snake(Snake snake);
+void print_game_state(Board board, Snake snake);
+
 void cleanup_game(Snake* snake, Board* board);
 #endif

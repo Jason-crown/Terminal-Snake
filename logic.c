@@ -4,12 +4,11 @@ void update_snake(Snake *snake, Board board) {
     // Move the snake's head in the current direction
 
     // Check for collisions with the board boundaries
+    char* wallCollisions = {snake->head.x <= 0, snake->head.x > board.width, snake->head.y <= 0, snake->head.y};
+    char* collisionMessages = {"head hit left", "head hit right", "head hit top", "head hit bottom"};
     if (snake->head.x <= 0 || snake->head.x > board.width || snake->head.y <= 0 || snake->head.y > board.height) {
         char* condition = "non";
-        if (snake->head.x <= 0) condition = "head hit left";
-        if (snake->head.x > board.width) condition = "head hit right";
-        if (snake->head.y <= 0) condition = "head hit top";
-        if (snake->head.y > board.height) condition = "head hit bottom";
+        for (int i = 0; i < 4; i++) if (wallCollisions[i] == 1) condition = wallCollisions[i];
         printf("Game Over! Snake hit the wall. %s\n,", condition);
         exit(EXIT_FAILURE);
     }

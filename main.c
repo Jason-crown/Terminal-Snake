@@ -5,7 +5,6 @@ void run_game() {
     Snake snake = initialize_snake();
     
     while (true) {
-        
         print_game_state(board, snake);
         int direction = handle_inputs(&snake);
         if (direction != -1) {
