@@ -10,8 +10,8 @@
 #include <ctype.h>
 #include <conio.h>
 
-#define BOARD_WIDTH 50
-#define BOARD_HEIGHT 25
+#define BOARD_WIDTH 10
+#define BOARD_HEIGHT 5
 #define BOARD_XOFFSET 12
 #define BOARD_YOFFSET 6
 
@@ -40,11 +40,10 @@ void run_game();
 Board create_board(int width, int height, int xoffset, int yoffset);
 Snake initialize_snake();
 Board initialize_board();
-void update_snake(Snake *snake, Board board, int direction);
+void update_snake(Snake *snake, Board board);
 void calculate_next_position(Snake *snake, int direction);
 void calculate_next_node_position(Snake *snake, int length_index);
 void grow_snake(Snake *snake);
-int input_direction();
 void print_board(Board board);
 void print_segment(Head head, int x, int y);
 void print_snake(Snake snake);

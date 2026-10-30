@@ -1,6 +1,6 @@
 #include "snake.h"
 
-void update_snake(Snake *snake, Board board, int direction) {
+void update_snake(Snake *snake, Board board) {
     // Move the snake's head in the current direction
 
     // Check for collisions with the board boundaries
@@ -28,24 +28,18 @@ void update_snake(Snake *snake, Board board, int direction) {
 
 void calculate_next_position(Snake *snake, int direction) {
     // Calculate the next position of the snake's head based on the direction
-    int direction_x = 0; 
-    int direction_y = 0;
     switch (direction) {
         case 0: // Up
             snake->head.y -= 1;
-            direction_y = -1;
             break;
         case 1: // Down
             snake->head.y += 1;
-            direction_y = 1;
             break;
         case 2: // Left
             snake->head.x -= 1;
-            direction_x = -1;
             break;
         case 3: // Right
             snake->head.x += 1;
-            direction_x = 1;
             break;
         default:
             printf("Invalid direction!\n");

@@ -1,10 +1,20 @@
 #include "snake.h"
 
-int input_direction() {
+int handle_inputs(Snake* snake) {
     int ch = getch();
     switch (ch) {
+        case 'S':
+            print_settings();
+            return -1;
+        case 'M':
+            print_menu();
+            return -1;
+        case 'N':
+            //Reset_game();
+            return -1;
         case 'G':
-            return -3;
+            grow_snake(snake);
+            return -1;
         case 'w':
             return 0; // Up
         case 's':
@@ -13,22 +23,6 @@ int input_direction() {
             return 2; // Left
         case 'd':
             return 3; // Right
-        default:
-            return -1; // Invalid input
-    }
-}
-
-int handle_inputs(Snake* snake) {
-    int ch = getch();
-    switch (ch) {
-        case 'S':
-            print_settings();
-        case 'M':
-            print_menu();
-        case 'N':
-            Reset_game();
-        case 'G':
-            grow_snake(&snake);
         default:
             return -1; // Invalid input
     }
