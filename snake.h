@@ -52,6 +52,6 @@ void print_game_state(Board board, Snake snake);
 void print_menu();
 void print_settings();
 void place_segment(int* prv_x, int* prv_y, int* cur_x, int* cur_y);
-int handle_inputs();
+int handle_inputs(Snake* snake);
 void cleanup_game(Snake* snake, Board* board);
 #endif

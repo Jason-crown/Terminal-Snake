@@ -18,19 +18,17 @@ int input_direction() {
     }
 }
 
-int handle_inputs() {
+int handle_inputs(Snake* snake) {
     int ch = getch();
     switch (ch) {
         case 'S':
-            
+            print_settings();
         case 'M':
-            
+            print_menu();
         case 'N':
-            
-        case 'A':
-            
-        case 'L':
-            
+            Reset_game();
+        case 'G':
+            grow_snake(&snake);
         default:
             return -1; // Invalid input
     }
