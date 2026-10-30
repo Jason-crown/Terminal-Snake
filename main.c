@@ -21,6 +21,5 @@ void run_game() {
 
 int main(void) {
     run_game();
-    //cleanup_game();
     return EXIT_SUCCESS;
 }

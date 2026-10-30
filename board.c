@@ -8,3 +8,14 @@ Board create_board(int width, int height, int xoffset, int yoffset) {
     board.yoffset = yoffset;
     return board;
 }
+
+cleanup_game(Snake* snake, Board* board) {
+    Head* current = &snake->head;
+    
+    while (current->next != NULL) {
+        free(current);
+        current = current->next;
+    }
+    
+    free(board);
+}
