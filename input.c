@@ -17,3 +17,21 @@ int input_direction() {
             return -1; // Invalid input
     }
 }
+
+int handle_inputs() {
+    int ch = getch();
+    switch (ch) {
+        case 'S':
+            
+        case 'M':
+            
+        case 'N':
+            
+        case 'A':
+            
+        case 'L':
+            
+        default:
+            return -1; // Invalid input
+    }
+}

@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -std=c11 -Wall -Wextra -pedantic
 TARGET = Snake
-OBJ = main.o board.o initialize.o logic.o movement.o print.o
+OBJ = main.o board.o initialize.o logic.o input.o print.o
 EXE = Snake.exe
 
 ifeq ($(OS), Windows_NT)
