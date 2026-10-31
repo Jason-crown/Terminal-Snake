@@ -95,7 +95,24 @@ void grow_snake(Snake *snake) {
 
 Apple eat_apple(Board* board, Snake* snake) {
     grow_snake(snake);
-    board->apple = create_apple(board);
+    board->apple = create_apple(board, snake, 1);
     print_apple(board->apple);
     return board->apple;
+}
+
+int* snake_coords(Snake* snake, char choice) {
+    int *y_list = malloc(sizeof(int)*snake->length);
+    int *x_list = malloc(sizeof(int)*snake->length);
+    int index = 0;
+
+    Head *current = &snake->head;
+    while(current->next != NULL) {
+        y_list[index] = current->y;
+        x_list[index] = current->x;
+        index += 1;
+        current = current->next;
+    }
+    
+    if (choice == 'x') return x_list;
+    else return y_list;
 }

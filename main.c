@@ -1,9 +1,9 @@
 #include "snake.h"
 
 void run_game() {
-    Board board = initialize_board();
     Snake snake = initialize_snake();
-    
+    Board board = initialize_board(&snake);
+
     while (true) {
         print_game_state(board, snake);
         int direction = handle_inputs(&snake);

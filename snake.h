@@ -49,7 +49,7 @@ void run_game();
 Board create_board(int width, int height, int xoffset, int yoffset);
 
 Snake initialize_snake();
-Board initialize_board();
+Board initialize_board(Snake *snake);
 
 void grow_snake(Snake *snake);
 void update_snake(Snake *snake, Board *board);
@@ -69,6 +69,8 @@ void print_game_state(Board board, Snake snake);
 
 void cleanup_game(Snake* snake, Board* board);
 
-Apple create_apple(Board* board);
+int* snake_coords(Snake* snake, char choice);
+
+Apple create_apple(Board* board, Snake* snake, int seedCounter);
 Apple eat_apple(Board* board, Snake* snake);
 #endif
