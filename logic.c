@@ -70,16 +70,7 @@ void calculate_next_node_position(Snake *snake, int length_index) {
         calculate_next_node_position(snake, length_index-1);
     }
 }
-void grow_snake(Snake *snake) {
-    // Add a new segment to the snake's body
-    Head *new_segment = (Head *)malloc(sizeof(Head));
-    if (new_segment == NULL) {
-        printf("Memory allocation failed!\n");
-        exit(EXIT_FAILURE);
-    }
-    Head *current = &snake->head;
-    new_segment->x = current->x; // New segment starts at the head's position
-    new_segment->y = current->y;
+
 void grow_snake(Snake *snake) {
     // Add a new segment to the snake's body
     Head *new_segment = (Head *)malloc(sizeof(Head));
@@ -102,3 +93,9 @@ void grow_snake(Snake *snake) {
     snake->length += 1; // Increase the length of the snake
 }
 
+Apple eat_apple(Board* board, Snake* snake) {
+    grow_snake(snake);
+    board->apple = create_apple(board);
+    print_apple(board->apple);
+    return board->apple;
+}
