@@ -102,9 +102,3 @@ void grow_snake(Snake *snake) {
     snake->length += 1; // Increase the length of the snake
 }
 
-Apple eat_apple(Board* board, Snake* snake) {
-    grow_snake(snake);
-    board->apple = create_apple(board);
-    print_apple(board->apple);
-    return board->apple;
-}
