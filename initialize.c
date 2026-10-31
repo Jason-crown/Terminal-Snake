@@ -16,6 +16,14 @@ Board initialize_board() {
     board.height = BOARD_HEIGHT;
     board.xoffset = BOARD_XOFFSET;
     board.yoffset = BOARD_YOFFSET;
+    board.apple = create_apple(&board);
     return board;
 }
 
+Apple create_apple(Board* board) {
+    srand(time(NULL));
+    Apple apple;
+    apple.x = rand() % ((board->width-1)-1)+1;
+    apple.y = rand() % ((board->height-1)-1)+1;
+    return apple;
+}

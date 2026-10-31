@@ -1,15 +1,19 @@
 #include "snake.h"
 
-void update_snake(Snake *snake, Board board) {
+Apple update_snake(Snake *snake, Board board) {
     // Move the snake's head in the current direction
 
     // Check for collisions with the board boundaries
-    char* wallCollisions = {snake->head.x <= 0, snake->head.x > board.width, snake->head.y <= 0, snake->head.y};
-    char* collisionMessages = {"head hit left", "head hit right", "head hit top", "head hit bottom"};
+    bool wallCollisions[] = {snake->head.x <= 0, snake->head.x > board.width, snake->head.y <= 0, snake->head.y};
+    char* collisionMessages[] = {"Left", "Right", "Top", "Bottom"};
     if (snake->head.x <= 0 || snake->head.x > board.width || snake->head.y <= 0 || snake->head.y > board.height) {
-        char* condition = "non";
-        for (int i = 0; i < 4; i++) if (wallCollisions[i] == 1) condition = wallCollisions[i];
-        printf("Game Over! Snake hit the wall. %s\n,", condition);
+        for (int i = 0; i < 4; i++) {
+            if (wallCollisions[i]) {
+                printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
+                printf("Game Over! Snake hit the wall. \n Snakes head hit the %s of the board.\n", collisionMessages[i]);
+                break;
+            }
+        }
         exit(EXIT_FAILURE);
     }
     // Check for collisions with itself
@@ -22,6 +26,9 @@ void update_snake(Snake *snake, Board board) {
                 exit(EXIT_FAILURE);
             }
         }
+    }
+    if (snake->head.x == board.apple.x && snake->head.y == board.apple.y){     
+        return eat_apple(&board, snake);
     }
 }
 
@@ -86,3 +93,9 @@ void grow_snake(Snake *snake) {
     snake->length += 1; // Increase the length of the snake
 }
 
+Apple eat_apple(Board* board, Snake* snake) {
+    grow_snake(snake);
+    board->apple = create_apple(board);
+    print_apple(board->apple);
+    return board->apple;
+}
