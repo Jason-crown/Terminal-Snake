@@ -1,6 +1,6 @@
 #include "snake.h"
 
-Apple update_snake(Snake *snake, Board board) {
+void update_snake(Snake *snake, Board board) {
     // Move the snake's head in the current direction
 
     // Check for collisions with the board boundaries
@@ -28,7 +28,7 @@ Apple update_snake(Snake *snake, Board board) {
         }
     }
     if (snake->head.x == board.apple.x && snake->head.y == board.apple.y){     
-        return eat_apple(&board, snake);
+        eat_apple(&board, snake);
     }
 }
 

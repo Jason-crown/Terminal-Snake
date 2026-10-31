@@ -52,7 +52,7 @@ Snake initialize_snake();
 Board initialize_board();
 
 void grow_snake(Snake *snake);
-Apple update_snake(Snake *snake, Board board);
+void update_snake(Snake *snake, Board board);
 void calculate_next_position(Snake *snake, int direction);
 void calculate_next_node_position(Snake *snake, int length_index);
 
