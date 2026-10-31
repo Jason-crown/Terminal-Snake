@@ -17,6 +17,5 @@ void cleanup_game(Snake* snake, Board* board) {
         free(current);
         current = current->next;
     }
-
     free(board);
 }
