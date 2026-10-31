@@ -100,19 +100,31 @@ Apple eat_apple(Board* board, Snake* snake) {
     return board->apple;
 }
 
-int* snake_coords(Snake* snake, char choice) {
-    int *y_list = malloc(sizeof(int)*snake->length);
-    int *x_list = malloc(sizeof(int)*snake->length);
-    int index = 0;
-
+Coordinates* snake_coords(Snake* snake) {
+    Coordinates *list = malloc(sizeof(Coordinates)*(snake->length));
     Head *current = &snake->head;
-    while(current->next != NULL) {
-        y_list[index] = current->y;
-        x_list[index] = current->x;
-        index += 1;
+    for (int i = 0; i < snake->length; i++) {
+        list[i].x = current->x; 
+        list[i].y = current->y;
         current = current->next;
     }
-    
-    if (choice == 'x') return x_list;
-    else return y_list;
+    return list;
+}
+
+Coordinates* emty_spaces(Board* board, Snake* snake, Coordinates* snake_pos) {
+    int size = ((board->height * board->width) - snake->length);
+    int index = 0;
+    Coordinates *mt_list = malloc(sizeof(Coordinates)*(size+1));
+    for(int i = 0; i < board->width; i++) {
+        for (int j = 0; j < board->height; j++) {
+            for (int z = 0; z < snake->length; z++) {
+                if (index-1 < size && (snake_pos[z].x != i || snake_pos[z].y != j)) {
+                    mt_list[index].x = i;
+                    mt_list[index].y = j;  
+                    index+=1;              
+                }
+            }
+        }
+    }
+    return mt_list;
 }

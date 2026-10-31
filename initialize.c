@@ -26,13 +26,19 @@ Apple create_apple(Board* board, Snake* snake, int seedCounter) {
     Apple apple;
     apple.x = rand() % ((board->width-1)-1)+1;
     apple.y = rand() % ((board->height-1)-1)+1;
+    Coordinates* lists = emty_spaces(board, snake, snake_coords(snake));
+    //for (int i = 0; i < board->height * board->width-snake->length+1; i++) {
+    //    printf(" %d - (%d, %d)\n ", i, lists[i].x, lists[i].y);
+    //}
     Head *current = &snake->head;
     while(current->next != NULL) {
         if (current->x == apple.x && current->y == apple.y) {
-            return create_apple(board, snake, seedCounter);
+            int setRand = rand() % ((((board->height * board->width) - snake->length)-1)+1);
+            //printf("%d, %d, %d", temp2[0].x, temp2[1].x, temp2[2].x);
+            //apple.x = lists[setRand].x;
+            //apple.y = temp2[setRand].y;
         }
         current = current->next;
     }
-    
     return apple;
 }

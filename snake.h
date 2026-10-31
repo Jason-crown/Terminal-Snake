@@ -15,7 +15,10 @@
 #define BOARD_XOFFSET 12
 #define BOARD_YOFFSET 6
 
-
+typedef struct Coordinates {
+    int x;
+    int y;
+}Coordinates;
 
 typedef struct Head {
     int x;
@@ -67,9 +70,10 @@ void print_settings();
 void print_snake(Snake snake);
 void print_game_state(Board board, Snake snake);
 
-void cleanup_game(Snake* snake, Board* board);
+Coordinates* snake_coords(Snake* snake);
+Coordinates* emty_spaces(Board* board, Snake* snake, Coordinates* snake_pos); 
 
-int* snake_coords(Snake* snake, char choice);
+void cleanup_game(Snake* snake, Board* board);
 
 Apple create_apple(Board* board, Snake* snake, int seedCounter);
 Apple eat_apple(Board* board, Snake* snake);
