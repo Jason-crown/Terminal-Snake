@@ -4,9 +4,9 @@ void update_snake(Snake *snake, Board *board) {
     // Move the snake's head in the current direction
 
     // Check for collisions with the board boundaries
-    bool wallCollisions[] = {snake->head.x <= 0, snake->head.x > board->width, snake->head.y <= 0, snake->head.y};
+    bool wallCollisions[] = {snake->head.x < 0, snake->head.x > board->width, snake->head.y < 0, snake->head.y};
     char* collisionMessages[] = {"Left", "Right", "Top", "Bottom"};
-    if (snake->head.x <= 0 || snake->head.x > board->width || snake->head.y <= 0 || snake->head.y > board->height) {
+    if (snake->head.x < 0 || snake->head.x > board->width || snake->head.y < 0 || snake->head.y > board->height) {
         for (int i = 0; i < 4; i++) {
             if (wallCollisions[i]) {
                 printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
@@ -22,6 +22,7 @@ void update_snake(Snake *snake, Board *board) {
         while (current->next != NULL) {
             current = current->next;
             if (current->x == snake->head.x && current->y == snake->head.y) {
+                printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
                 printf("Game Over! Snake collided with itself.\n");
                 exit(EXIT_FAILURE);
             }
@@ -87,44 +88,12 @@ void grow_snake(Snake *snake) {
         current = current->next;
     }
     // Find the last segment of the snake
-
     current->next = new_segment; // Link the new segment to the end of the snake
-
     snake->length += 1; // Increase the length of the snake
 }
 
 Apple eat_apple(Board* board, Snake* snake) {
     grow_snake(snake);
-    board->apple = create_apple(board, snake, 1);
-    print_apple(board->apple);
+    board->apple = create_apple(board, snake);
     return board->apple;
-}
-
-Coordinates* snake_coords(Snake* snake) {
-    Coordinates *list = malloc(sizeof(Coordinates)*(snake->length));
-    Head *current = &snake->head;
-    for (int i = 0; i < snake->length; i++) {
-        list[i].x = current->x; 
-        list[i].y = current->y;
-        current = current->next;
-    }
-    return list;
-}
-
-Coordinates* emty_spaces(Board* board, Snake* snake, Coordinates* snake_pos) {
-    int size = ((board->height * board->width) - snake->length);
-    int index = 0;
-    Coordinates *mt_list = malloc(sizeof(Coordinates)*(size+1));
-    for(int i = 0; i < board->width; i++) {
-        for (int j = 0; j < board->height; j++) {
-            for (int z = 0; z < snake->length; z++) {
-                if (index-1 < size && (snake_pos[z].x != i || snake_pos[z].y != j)) {
-                    mt_list[index].x = i;
-                    mt_list[index].y = j;  
-                    index+=1;              
-                }
-            }
-        }
-    }
-    return mt_list;
 }

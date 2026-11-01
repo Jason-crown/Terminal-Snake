@@ -23,6 +23,9 @@ int handle_inputs(Snake* snake) {
             return 2; // Left
         case 'd':
             return 3; // Right
+        case 'e':
+            printf(" (%d, %d) ", snake->head.x, snake->head.y);
+            return -1;
         default:
             return -1; // Invalid input
     }

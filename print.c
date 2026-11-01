@@ -24,7 +24,7 @@ void print_board(Board board) {
 
 void print_segment(Head head, int x, int y) {
     // Move the cursor to the specified position
-    printf("\033[%d;%dH", y+1, x+1); // ANSI escape code to move cursor
+    printf("\033[%d;%dH", y+2, x+2); // ANSI escape code to move cursor
     if(head.x == x && head.y == y){
         printf("\x1b[91m%c\x1b[0m", 219);
     } else{
@@ -53,7 +53,7 @@ void print_game_state(Board board, Snake snake) {
 }
 
 void print_apple(Apple apple) {
-    printf("\033[%d;%dH", apple.y+1, apple.x+1); // ANSI escape code to move cursor
+    printf("\033[%d;%dH", apple.y+2, apple.x+2); // ANSI escape code to move cursor
     printf("\x1b[42m\x1b[91m%c\x1b[0m", 235);
 }
 
