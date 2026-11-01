@@ -4,9 +4,9 @@ void update_snake(Snake *snake, Board *board) {
     // Move the snake's head in the current direction
 
     // Check for collisions with the board boundaries
-    bool wallCollisions[] = {snake->head.x < 0, snake->head.x > board->width, snake->head.y < 0, snake->head.y};
+    bool wallCollisions[] = {0 > snake->head.x, snake->head.x > board->width-1, 0 > snake->head.y, snake->head.y > board->height-1};
     char* collisionMessages[] = {"Left", "Right", "Top", "Bottom"};
-    if (snake->head.x < 0 || snake->head.x > board->width || snake->head.y < 0 || snake->head.y > board->height) {
+    if (0 > snake->head.x || snake->head.x > board->width-1 || 0 > snake->head.y || snake->head.y > board->height-1) {
         for (int i = 0; i < 4; i++) {
             if (wallCollisions[i]) {
                 printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
