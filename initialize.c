@@ -24,7 +24,6 @@ Apple create_apple(Board* board, Snake* snake) {
     int* safe_x = malloc(sizeof(int)*board->height*board->width);
     int* safe_y = malloc(sizeof(int)*board->height*board->width);
     int n = 0;
-    Head* current = &snake->head;
     for (int i = 0; i < board->width; i++) {
         for (int j = 0; j < board->height; j++) {
             if(!isSnake(snake, i, j)) {
@@ -38,6 +37,8 @@ Apple create_apple(Board* board, Snake* snake) {
         apple.x = safe_x[random(n-1,0)];
         apple.y = safe_y[random(n-1,0)];
     }
+    free(safe_x);
+    free(safe_y);
     return apple;
 }
 

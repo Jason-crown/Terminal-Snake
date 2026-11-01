@@ -47,19 +47,22 @@ void update_snake(Snake *snake, Board *board);
 void calculate_next_position(Snake *snake, int direction);
 void calculate_next_node_position(Snake *snake, int length_index);
 
-void print_menu();
-void print_settings();
 void print_apple(Apple apple);
 void print_snake(Snake snake);
 void print_board(Board board);
 void print_segment(Head head, int x, int y);
+int print_menu(Board* board, Snake* snake);
+void print_settings(Board* board, Snake* snake);
 void print_game_state(Board board, Snake snake);
 
 int random(int max, int min);
-int handle_inputs(Snake* snake);
+int handle_menu(Board* board, Snake* snake);
+int handle_inputs(Board* board, Snake* snake, bool* pause);
 bool isSnake(Snake* snake, int x, int y);
 
 void run_game();
-void cleanup_game(Snake* snake, Board* board);
+void new_game();
+void free_snake(Snake* snake);
+void quit_game(Board* board, Snake* snake);
 
 #endif

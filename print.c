@@ -57,15 +57,21 @@ void print_apple(Apple apple) {
     printf("\x1b[42m\x1b[91m%c\x1b[0m", 235);
 }
 
-void print_menu() {
-    printf("1. Start Game\n");
-    printf("2. Load Game\n");
-    printf("3. Exit\n");
+int print_menu(Board* board, Snake* snake) {
+    printf("\033[%d;%dH", board->height+3, 0);
+    printf("Menu:\n");
+    printf("(P). Unpause Game\n");
+    printf("(S). Game Settings\n");
+    printf("(N). New Game\n");
+    printf("(Q). Exit\n");
+    handle_menu(board, snake);
 }
 
-void print_settings() {
+void print_settings(Board* board, Snake* snake) {
+    printf("\033[%d;%dH", board->height+3, 0);
     printf("Settings:\n");
     printf("1. Change Board Size\n");
     printf("2. Change Snake Speed\n");
-    printf("3. Back to Menu\n");
+    printf("3. Change game colors\n");
+    printf("4. Back to Menu\n");
 }

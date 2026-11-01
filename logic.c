@@ -9,7 +9,7 @@ void update_snake(Snake *snake, Board *board) {
     if (0 > snake->head.x || snake->head.x > board->width-1 || 0 > snake->head.y || snake->head.y > board->height-1) {
         for (int i = 0; i < 4; i++) {
             if (wallCollisions[i]) {
-                printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
+                printf("\033[%d;%dH", board->height+3, 0);
                 printf("Game Over! Snake hit the wall. \n Snakes head hit the %s of the board.\n", collisionMessages[i]);
                 break;
             }
@@ -22,7 +22,7 @@ void update_snake(Snake *snake, Board *board) {
         while (current->next != NULL) {
             current = current->next;
             if (current->x == snake->head.x && current->y == snake->head.y) {
-                printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
+                printf("\033[%d;%dH", board->height+3, 0);
                 printf("Game Over! Snake collided with itself.\n");
                 exit(EXIT_FAILURE);
             }
@@ -32,7 +32,7 @@ void update_snake(Snake *snake, Board *board) {
         if (snake->length<board->height*board->width) {
             eat_apple(board, snake);
         } else {
-            printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
+            printf("\033[%d;%dH", board->height+3, 0);
             printf("YOU WIN !!!");
         }  
         
