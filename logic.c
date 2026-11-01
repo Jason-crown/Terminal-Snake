@@ -28,8 +28,14 @@ void update_snake(Snake *snake, Board *board) {
             }
         }
     }
-    if (snake->head.x == board->apple.x && snake->head.y == board->apple.y){     
-        eat_apple(board, snake);
+    if (snake->head.x == board->apple.x && snake->head.y == board->apple.y){
+        if (snake->length<board->height*board->width) {
+            eat_apple(board, snake);
+        } else {
+            printf("\033[%d;%dH", BOARD_HEIGHT+3, 0);
+            printf("YOU WIN !!!");
+        }  
+        
     }
 }
 

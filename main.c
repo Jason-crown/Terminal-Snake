@@ -12,7 +12,7 @@ void run_game() {
             calculate_next_position(&snake, direction);
             update_snake(&snake, &board);
         }
-        usleep(200000); // Sleep for 200ms
+        usleep(20000); // Sleep for 200ms
     }
 
 }

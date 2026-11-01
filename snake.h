@@ -10,7 +10,7 @@
 #include <ctype.h>
 #include <conio.h>
 
-#define BOARD_WIDTH 100
+#define BOARD_WIDTH 6
 #define BOARD_HEIGHT 3
 #define BOARD_XOFFSET 12
 #define BOARD_YOFFSET 6

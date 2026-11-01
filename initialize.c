@@ -4,8 +4,8 @@ Snake initialize_snake() {
     Snake snake;
     snake.length = 1;
     snake.health = 100;
-    snake.head.x = 2;
-    snake.head.y = 2;
+    snake.head.x = 0;
+    snake.head.y = 0;
     snake.head.next = NULL;
     return snake;
 }
@@ -28,14 +28,22 @@ Apple create_apple(Board* board, Snake* snake) {
 Apple rec_apple(Board* board, Snake* snake, Apple* apple) {
     apple->x = random(board->width-1, 0);
     apple->y = random(board->height-1, 0);
+    int* safe_x = malloc(sizeof(int)*board->height*board->width);
+    int* safe_y = malloc(sizeof(int)*board->height*board->width);
+    int n = 0;
     Head* current = &snake->head;
-    while (current->next != NULL) {
-        if (apple->x == current->x && apple->y == current->y) {
-            usleep(10000);
-            rec_apple(board, snake, apple);                
-
-        }
-        current = current->next;
+    for (int i = 0; i < board->width; i++) {
+        for (int j = 0; j < board->height; j++) {
+            if(!isSnake(snake, i, j)) {
+                safe_x[n] = i;
+                safe_y[n] = j;
+                n++;
+            }
+        }                
+    }
+    if (isSnake(snake, apple->x, apple->y)) {
+        apple->x = safe_x[random(n-1,0)];
+        apple->y = safe_y[random(n-1,0)];
     }
     return *apple;
 }
