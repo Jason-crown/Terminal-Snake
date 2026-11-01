@@ -53,7 +53,7 @@ void print_game_state(Board board, Snake snake) {
 }
 
 void print_apple(Apple apple) {
-    printf("\033[%d;%dH", apple.y+2, apple.x+2); // ANSI escape code to move cursor
+    printf("\033[%d;%dH", apple.y+1, apple.x+1); // ANSI escape code to move cursor
     printf("\x1b[42m\x1b[91m%c\x1b[0m", 235);
 }
 
