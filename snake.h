@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <conio.h>
+#include <pthread.h>
 
 typedef struct Head {
     int x;
