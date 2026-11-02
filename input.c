@@ -1,6 +1,9 @@
 #include "snake.h"
 
 int handle_menu(Board* board, Snake* snake, bool* pause) {
+        if (*pause) {
+            printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+        }    
     int ch = getch();
     switch (ch) {
         case 'S':
@@ -8,7 +11,6 @@ int handle_menu(Board* board, Snake* snake, bool* pause) {
         case 'P':      
         case 'M':
             *pause = !*pause;
-            printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));   
             return -1;
         case 'Q':
         case 'q':
@@ -57,13 +59,16 @@ int handle_settings(Board* board, Snake* snake, bool* pause) {
 int handle_inputs(Board* board, Snake* snake, bool* pause) {
     int ch = getch();
     switch (ch) {
+        case 'M':
+            *pause = !*pause;
+            printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+            print_menu(board, snake, pause);
+            return -1;        
         case 'P':
         case 'p':
             *pause = !*pause;
             printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
             return -1;
-        case 'M':
-            return print_menu(board, snake, pause);
         case 'N':
             free_snake(snake);
             new_game();

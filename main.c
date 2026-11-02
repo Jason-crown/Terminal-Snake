@@ -4,10 +4,14 @@ void run_game() {
     Snake snake = initialize_snake();
     Board board = initialize_board(&snake);
     bool pause = false;
+    int direction = 3;
+    // Main game loop
+    // moves the snake automatically in the current direction until a new direction is given by the user
+    int new_direction = -1;
     while (true) {
         if(!pause) print_game_state(board, snake);
-        int direction = handle_inputs(&board, &snake, &pause);
-        if (direction >= 0) {
+        direction = 3;//handle_inputs(&board, &snake, &pause);
+        if (direction >= 0 && direction <= 3) {
             calculate_next_node_position(&snake, snake.length);
             calculate_next_position(&snake, direction);
             if (update_snake(&snake, &board) == -1) {
@@ -15,11 +19,10 @@ void run_game() {
                 printf("\033[%d;%dH\x1b[102m\x1b[94mYOU WIN\x1b[0m", 0, ((board.width-1)/2));
             }
         }
-        usleep(20000); // Sleep for 200ms
+        usleep(200000); // Sleep for 20ms
     }
     
 }
-
 void quit_game(Board* board, Snake* snake) {
     free_snake(snake);
     printf("\033[%d;%dH", board->height+3, 0);
