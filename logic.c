@@ -1,6 +1,6 @@
 #include "snake.h"
 
-void update_snake(Snake *snake, Board *board) {
+int update_snake(Snake *snake, Board *board) {
     // Move the snake's head in the current direction
 
     // Check for collisions with the board boundaries
@@ -33,10 +33,11 @@ void update_snake(Snake *snake, Board *board) {
             eat_apple(board, snake);
         } else {
             printf("\033[%d;%dH", board->height+3, 0);
-            printf("YOU WIN !!!");
+            printf("Press n for new game or q to quit\n");
+            return -1;
         }  
-        
     }
+    return 0;
 }
 
 void calculate_next_position(Snake *snake, int direction) {

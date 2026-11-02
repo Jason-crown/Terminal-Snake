@@ -11,8 +11,8 @@ Snake initialize_snake() {
 
 Board initialize_board(Snake *snake) {
     Board board;
-    board.width = BOARD_WIDTH;
-    board.height = BOARD_HEIGHT;
+    board.width = 20;
+    board.height = 10;
     board.apple = create_apple(&board, snake);
     return board;
 }

@@ -7,18 +7,13 @@ void run_game() {
     while (true) {
         if(!pause) print_game_state(board, snake);
         int direction = handle_inputs(&board, &snake, &pause);
-        if (direction == -2) {
-            pause = !pause;
-            printf("\033[%d;%dH\x1b[102m\x1b[94mPaused", 0, ((board.width-1)/2));
-        }
-        if (direction == -3) {
-            free_snake(&snake);
-            new_game();
-        }
         if (direction >= 0) {
             calculate_next_node_position(&snake, snake.length);
             calculate_next_position(&snake, direction);
-            update_snake(&snake, &board);
+            if (update_snake(&snake, &board) == -1) {
+                pause = !pause;
+                printf("\033[%d;%dH\x1b[102m\x1b[94mYOU WIN\x1b[0m", 0, ((board.width-1)/2));
+            }
         }
         usleep(20000); // Sleep for 200ms
     }
