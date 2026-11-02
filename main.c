@@ -7,7 +7,7 @@ void run_game() {
     Board board = initialize_board(&snake);
     bool pause = false;
     int direction = 3;
-    pthread_create(&input_thread, NULL, (void*)handle_inputs, &board, &snake, &pause);
+    pthread_create(&input_thread, NULL, (void*)handle_inputs, create_thread_args(&board, &snake, &pause));
     // Main game loop
     // moves the snake automatically in the current direction until a new direction is given by the user
     int new_direction = -1;

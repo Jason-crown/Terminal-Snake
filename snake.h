@@ -11,6 +11,12 @@
 #include <conio.h>
 #include <pthread.h>
 
+typedef struct thread_args {
+    Board* board;
+    Snake* snake;
+    bool* pause;
+} thread_args;
+
 typedef struct Head {
     int x;
     int y;
