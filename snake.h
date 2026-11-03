@@ -22,23 +22,29 @@ typedef struct Color {
 typedef struct Head {
     int x;
     int y;
+    char color[9];
     struct Head *next;
 }Head;
 
 typedef struct Snake {
     int length;
     int speed;
+    char color[9];
     Head head;
 }Snake;
 
 typedef struct Apple {
     int x;
     int y;
+    char color[9];
 } Apple;
 
 typedef struct Board {
     int width;
     int height;
+    char boarder_color[9];
+    char background_color[9];
+    char detial_color[9];
     Apple apple;
 }Board;
 
@@ -53,6 +59,7 @@ void new_game();
 
 Snake initialize_snake();
 Board initialize_board(Snake *snake);
+Color* initialize_colors();
 
 Apple eat_apple(Board* board, Snake* snake);
 Apple create_apple(Board* board, Snake* snake);
@@ -68,11 +75,11 @@ Snake* resize_snake(Snake* snake, int new_length);
 Color* set_snake_color(Color* color);
 Color* set_board_color(Color* color);
 
-void print_apple(Apple apple);
+void print_apple(Board board);
 void print_snake(Snake snake);
 void print_board(Board board);
 
-void print_segment(Head head, int x, int y);
+void print_segment(Snake snake, int x, int y);
 void print_game_state(Board board, Snake snake);
 
 int print_menu(Board* board, Snake* snake, bool* pause);

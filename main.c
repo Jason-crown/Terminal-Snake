@@ -16,6 +16,7 @@ void run_game() {
     bool pause = false;
     
     //pthread_t input_thread;
+    Color* colors = initialize_colors();
     Snake snake = initialize_snake();
     Board board = initialize_board(&snake);
     //thread_args args = create_thread_args(&board, &snake, &pause);

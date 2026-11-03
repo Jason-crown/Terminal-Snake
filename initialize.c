@@ -29,6 +29,8 @@ Snake initialize_snake() {
     snake.head.y = 0;
     snake.speed = 1; // Default speed
     snake.head.next = NULL;
+    strcpy(snake.color, "\x1b[31m"); // Initialize color to empty string
+    strcpy(snake.head.color, "\x1b[91m"); // Initialize head color to empty string
     return snake;
 }
 
@@ -37,6 +39,10 @@ Board initialize_board(Snake *snake) {
     board.width = 20;
     board.height = 10;
     board.apple = create_apple(&board, snake);
+    strcpy(board.boarder_color, "\x1b[37m"); // Initialize color to empty string
+    strcpy(board.background_color, "\x1b[40m"); // Initialize color to empty string
+    strcpy(board.detial_color, "\x1b[37m"); // Initialize color to empty string
+    strcpy(board.apple.color, "\x1b[91m"); // Initialize color to empty string
     return board;
 }
 
@@ -44,6 +50,7 @@ Apple create_apple(Board* board, Snake* snake) {
     Apple apple;
     apple.x = random(board->width-1, 0);
     apple.y = random(board->height-1, 0);
+    strcpy(apple.color, "\x1b[91m"); // Initialize color to empty string
     int* safe_x = malloc(sizeof(int)*board->height*board->width);
     int* safe_y = malloc(sizeof(int)*board->height*board->width);
     int n = 0;
