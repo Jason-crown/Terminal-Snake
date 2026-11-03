@@ -46,3 +46,11 @@ Snake* resize_snake(Snake* snake, int new_length) {
     snake->length = new_length;
     return snake;
 }
+
+Color* set_snake_color(Color* color) {
+    return color;
+}
+
+Color* set_board_color(Color* color) {
+    return color;
+}

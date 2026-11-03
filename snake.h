@@ -59,6 +59,8 @@ void calculate_next_node_position(Snake *snake, int length_index);
 Board* resize_board(Board* board, Snake* snake, int width, int height);
 Snake* set_snake_speed(Snake* snake, int speed);
 Snake* resize_snake(Snake* snake, int new_length);
+Color* set_snake_color(Color* color);
+Color* set_board_color(Color* color);
 
 void print_apple(Apple apple);
 void print_snake(Snake snake);
