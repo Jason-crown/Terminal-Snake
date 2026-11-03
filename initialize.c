@@ -1,18 +1,18 @@
 #include "snake.h"
 
-thread_args* create_thread_args(Board* board, Snake* snake, bool* pause) {
-    thread_args* args = malloc(sizeof(thread_args));
-    args->board = board;
-    args->snake = snake;
-    args->pause = pause;
+thread_args create_thread_args(Board* board, Snake* snake, bool* pause) {
+    thread_args args;
+    args.board = board;
+    args.snake = snake;
+    args.pause = pause;
     return args;
 }
 
 Snake initialize_snake() {
     Snake snake;
     snake.length = 1;
-    snake.head.x = 1;
-    snake.head.y = 1;
+    snake.head.x = 0;
+    snake.head.y = 0;
     snake.head.next = NULL;
     return snake;
 }

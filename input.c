@@ -8,7 +8,13 @@ int handle_menu(Board* board, Snake* snake, bool* pause) {
     switch (ch) {
         case 'S':
             return print_settings(board, snake, pause);
-        case 'P':      
+        case 'P':
+        case 'p':
+            *pause = !*pause;
+            if (*pause) {
+                printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+            }
+            return -1;      
         case 'M':
             *pause = !*pause;
             return -1;
@@ -51,8 +57,7 @@ int handle_settings(Board* board, Snake* snake, bool* pause) {
         case 'q':
             quit_game(board, snake);
             return -1;
-        default:
-            return -1; // Invalid input
+        return -1; // Invalid input
     }
 }
 
@@ -67,7 +72,9 @@ int handle_inputs(Board* board, Snake* snake, bool* pause) {
         case 'P':
         case 'p':
             *pause = !*pause;
-            printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+            if (*pause) {
+                printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+            }
             return -1;
         case 'N':
             free_snake(snake);

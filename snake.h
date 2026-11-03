@@ -11,11 +11,7 @@
 #include <conio.h>
 #include <pthread.h>
 
-typedef struct thread_args {
-    Board* board;
-    Snake* snake;
-    bool* pause;
-} thread_args;
+
 
 typedef struct Head {
     int x;
@@ -38,6 +34,12 @@ typedef struct Board {
     int height;
     Apple apple;
 }Board;
+
+typedef struct thread_args {
+    Board* board;
+    Snake* snake;
+    bool* pause;
+} thread_args;
 
 void run_game();
 void new_game();
@@ -68,6 +70,7 @@ int print_settings(Board* board, Snake* snake, bool* pause);
 int random(int max, int min);
 bool isSnake(Snake* snake, int x, int y);
 
+void* handle_thread(void* args);
 int handle_menu(Board* board, Snake* snake, bool* pause);
 int handle_inputs(Board* board, Snake* snake, bool* pause);
 int handle_settings(Board* board, Snake* snake, bool* pause);
@@ -75,5 +78,6 @@ int handle_settings(Board* board, Snake* snake, bool* pause);
 
 void free_snake(Snake* snake);
 void quit_game(Board* board, Snake* snake);
+thread_args create_thread_args(Board* board, Snake* snake, bool* pause);
 
 #endif
