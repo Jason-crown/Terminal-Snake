@@ -11,7 +11,11 @@
 #include <conio.h>
 #include <pthread.h>
 
-
+typedef struct Color {
+    char red;
+    char green;
+    char blue;
+} Color;
 
 typedef struct Head {
     int x;
