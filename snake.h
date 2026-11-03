@@ -72,8 +72,11 @@ void calculate_next_node_position(Snake *snake, int length_index);
 Board* resize_board(Board* board, Snake* snake, int width, int height);
 Snake* set_snake_speed(Snake* snake, int speed);
 Snake* resize_snake(Snake* snake, int new_length);
-Color* set_snake_color(Color* color);
-Color* set_board_color(Color* color);
+void set_snake_color(Snake* snake, Color* color);
+void set_board_color(Board* board, Color* color);
+void change_colors(Board* board, Snake* snake, Color* color);
+void set_apple_color(Board* board, Color* color);
+int get_color_choice(void);
 
 void print_apple(Board board);
 void print_snake(Snake snake);
@@ -92,6 +95,7 @@ void* handle_thread(void* args);
 int handle_menu(Board* board, Snake* snake, bool* pause);
 int handle_inputs(Board* board, Snake* snake, bool* pause);
 int handle_settings(Board* board, Snake* snake, bool* pause);
+
 
 
 void free_snake(Snake* snake);

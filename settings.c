@@ -47,10 +47,65 @@ Snake* resize_snake(Snake* snake, int new_length) {
     return snake;
 }
 
-Color* set_snake_color(Color* color) {
-    return color;
+void change_colors(Board* board, Snake* snake, Color* color) {
+    printf("What would you like to change the colors of?\n");
+    printf("1. Snake\n");
+    printf("2. Board\n");
+    int choice;
+    scanf("%d", &choice);
+    if (choice == 1) {
+        set_snake_color(snake, color);
+    } else if (choice == 2) {
+        set_board_color(board, color);
+    }
 }
 
-Color* set_board_color(Color* color) {
-    return color;
+void set_snake_color(Snake* snake, Color* color) {
+    printf("what part of the snake would you like to change?\n");
+    printf("1. Body\n");
+    printf("2. Head\n");
+    int colorChoice;
+    int choice;
+    scanf("%d", &choice);
+    if (choice == 1) {
+        colorChoice = get_color_choice();
+        strcpy(snake->color, color->normal[0]);
+    } else if (choice == 2) {
+        colorChoice = get_color_choice();
+        strcpy(snake->head.color, color->bright[0]);
+    }
+}
+
+void set_board_color(Board* board, Color* color) {
+    printf("what part of the board would you like to change?\n");
+    printf("1. Border\n");
+    printf("2. Background\n");
+    printf("3. Details\n");
+    int colorChoice;
+    int choice;
+    scanf("%d", &choice);
+    if (choice == 1) {
+        colorChoice = get_color_choice();
+        strcpy(board->boarder_color, color->normal[0]);
+    } else if (choice == 2) {
+        colorChoice = get_color_choice();
+        strcpy(board->background_color, color->background[0]);
+    } else if (choice == 3) {
+        colorChoice = get_color_choice();
+        strcpy(board->detial_color, color->bright[0]);
+    }
+}
+
+int get_color_choice() {
+    printf("Choose a color:\n");
+    printf("1. Red\n");
+    printf("2. Yellow\n");
+    printf("3. Green\n");
+    printf("4. Blue\n");
+    printf("5. Magenta\n");
+    printf("6. Cyan\n");
+    printf("7. White\n");
+    int choice;
+    scanf("%d", &choice);
+    return choice - 1; // Return index (0-6)
 }
