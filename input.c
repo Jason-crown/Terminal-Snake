@@ -1,9 +1,9 @@
 #include "snake.h"
 
 int handle_menu(Board* board, Snake* snake, bool* pause) {
-        if (*pause) {
-            printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
-        }    
+    if (*pause) {
+        printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+    }    
     int ch = getch();
     switch (ch) {
         case 'S':

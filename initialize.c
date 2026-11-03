@@ -13,6 +13,7 @@ Snake initialize_snake() {
     snake.length = 1;
     snake.head.x = 0;
     snake.head.y = 0;
+    snake.speed = 1; // Default speed
     snake.head.next = NULL;
     return snake;
 }
