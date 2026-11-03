@@ -1,13 +1,13 @@
 #include "snake.h"
 
-int handle_menu(Board* board, Snake* snake, bool* pause) {
+int handle_menu(Board* board, Snake* snake, bool* pause, Color* colors) {
     if (*pause) {
         printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
     }    
     int ch = getch();
     switch (ch) {
         case 'S':
-            return print_settings(board, snake, pause);
+            return print_settings(board, snake, pause, colors);
         case 'P':
         case 'p':
             *pause = !*pause;
@@ -31,7 +31,7 @@ int handle_menu(Board* board, Snake* snake, bool* pause) {
     }
 }
 
-int handle_settings(Board* board, Snake* snake, bool* pause) {
+int handle_settings(Board* board, Snake* snake, bool* pause, Color* colors) {
     int ch = getch();
     int width = 0, height = 0;
     int speed = 1;
@@ -58,10 +58,11 @@ int handle_settings(Board* board, Snake* snake, bool* pause) {
             print_game_state(*board, *snake);
             return -1;
         case '3':   
-            //change_color();
+            change_colors(board, snake, colors);
+            *pause = !*pause;
             return -1;
         case '4':
-            return print_menu(board, snake, pause);
+            return print_menu(board, snake, pause, colors);
         case 'Q':
         case 'q':
             quit_game(board, snake);
@@ -69,18 +70,18 @@ int handle_settings(Board* board, Snake* snake, bool* pause) {
         default:
             printf("\033[%d;%dH", board->height+3, 0);
             printf("Invalid input. Please try again.\n");
-            handle_settings(board, snake, pause);
+            handle_settings(board, snake, pause, colors);
             return -1; // Invalid input
     }
 }
 
-int handle_inputs(Board* board, Snake* snake, bool* pause) {
+int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors) {
     int ch = getch();
     switch (ch) {
         case 'M':
             *pause = !*pause;
             printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
-            print_menu(board, snake, pause);
+            print_menu(board, snake, pause, colors);
             return -1;        
         case 'P':
         case 'p':

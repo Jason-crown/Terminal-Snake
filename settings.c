@@ -69,10 +69,10 @@ void set_snake_color(Snake* snake, Color* color) {
     scanf("%d", &choice);
     if (choice == 1) {
         colorChoice = get_color_choice();
-        strcpy(snake->color, color->normal[0]);
+        strcpy(snake->color, color->normal[colorChoice]);
     } else if (choice == 2) {
         colorChoice = get_color_choice();
-        strcpy(snake->head.color, color->bright[0]);
+        strcpy(snake->head.color, color->bright[colorChoice]);
     }
 }
 
@@ -86,13 +86,13 @@ void set_board_color(Board* board, Color* color) {
     scanf("%d", &choice);
     if (choice == 1) {
         colorChoice = get_color_choice();
-        strcpy(board->boarder_color, color->normal[0]);
+        strcpy(board->boarder_color, color->normal[colorChoice]);
     } else if (choice == 2) {
         colorChoice = get_color_choice();
-        strcpy(board->background_color, color->background[0]);
+        strcpy(board->background_color, color->background[colorChoice]);
     } else if (choice == 3) {
         colorChoice = get_color_choice();
-        strcpy(board->detial_color, color->bright[0]);
+        strcpy(board->detial_color, color->bright[colorChoice]);
     }
 }
 

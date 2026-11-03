@@ -52,6 +52,7 @@ typedef struct thread_args {
     Board* board;
     Snake* snake;
     bool* pause;
+    Color* colors;
 } thread_args;
 
 void run_game();
@@ -85,16 +86,16 @@ void print_board(Board board);
 void print_segment(Snake snake, int x, int y);
 void print_game_state(Board board, Snake snake);
 
-int print_menu(Board* board, Snake* snake, bool* pause);
-int print_settings(Board* board, Snake* snake, bool* pause);
+int print_menu(Board* board, Snake* snake, bool* pause, Color* colors);
+int print_settings(Board* board, Snake* snake, bool* pause, Color* colors);
 
 int random(int max, int min);
 bool isSnake(Snake* snake, int x, int y);
 
 void* handle_thread(void* args);
-int handle_menu(Board* board, Snake* snake, bool* pause);
-int handle_inputs(Board* board, Snake* snake, bool* pause);
-int handle_settings(Board* board, Snake* snake, bool* pause);
+int handle_menu(Board* board, Snake* snake, bool* pause, Color* colors);
+int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors);
+int handle_settings(Board* board, Snake* snake, bool* pause, Color* colors);
 
 
 

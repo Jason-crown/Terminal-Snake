@@ -6,7 +6,7 @@ void* handle_thread(void* args) {
     Snake* snake = threadArgs->snake;
     bool* pause = threadArgs->pause;
     int direction = 3; // Default direction (right)
-    direction = handle_inputs(board, snake, pause);
+    direction = handle_inputs(board, snake, pause, threadArgs->colors);
     return (void*)(intptr_t)direction; // Return the new direction as a void pointer
 }
 
@@ -23,7 +23,7 @@ void run_game() {
     while (true) {
         //pthread_create(&input_thread, NULL, handle_thread, &args);
         if(!pause) print_game_state(board, snake);
-        direction = handle_inputs(&board, &snake, &pause);
+        direction = handle_inputs(&board, &snake, &pause, colors);
         if (direction >= 0 && direction <= 3) {
             calculate_next_node_position(&snake, snake.length);
             calculate_next_position(&snake, direction);
