@@ -44,6 +44,8 @@ int handle_settings(Board* board, Snake* snake, bool* pause) {
             printf("Enter new height: ");
             scanf("%d", &height);
             resize_board(board, snake, width, height);
+            *pause = !*pause;
+            print_game_state(*board, *snake);
             return -1;
         case '2':  
             //change_Snake_speed();
@@ -57,7 +59,11 @@ int handle_settings(Board* board, Snake* snake, bool* pause) {
         case 'q':
             quit_game(board, snake);
             return -1;
-        return -1; // Invalid input
+        default:
+            printf("\033[%d;%dH", board->height+3, 0);
+            printf("Invalid input. Please try again.\n");
+            handle_settings(board, snake, pause);
+            return -1; // Invalid input
     }
 }
 
