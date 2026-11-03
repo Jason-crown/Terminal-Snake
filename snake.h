@@ -12,9 +12,11 @@
 #include <pthread.h>
 
 typedef struct Color {
-    char red;
-    char green;
-    char blue;
+    char color_list[7][9];
+    char normal[7][9];
+    char bright[7][9];
+    char background[7][9];
+    char bright_background[7][9];
 } Color;
 
 typedef struct Head {

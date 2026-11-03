@@ -8,6 +8,20 @@ thread_args create_thread_args(Board* board, Snake* snake, bool* pause) {
     return args;
 }
 
+Color*initialize_colors() {
+    Color *colors = malloc(sizeof(Color));
+    if (colors == NULL) exit(1);
+    // List of all color inputs //
+    char* color_list[7] = {"red", "yellow", "green", "blue", "purple", "cyan", "white"};
+    // List of all Normal colors //
+    char* normal_colors[7] = {"\x1b[31m", "\x1b[33m", "\x1b[32m", "\x1b[34m", "\x1b[35m", "\x1b[36m", "\x1b[37m"};
+    // List of all Bright colors //
+    char* bright_colors[7] = {"\x1b[91m", "\x1b[93m", "\x1b[92m", "\x1b[94m", "\x1b[95m", "\x1b[96m", "\x1b[97m"};
+    // List of all Background colors //
+    char* background_colors[7] = {"\x1b[41m", "\x1b[43m", "\x1b[42m", "\x1b[44m", "\x1b[45m", "\x1b[46m", "\x1b[47m" };
+    return colors;
+}
+
 Snake initialize_snake() {
     Snake snake;
     snake.length = 1;
