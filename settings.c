@@ -50,29 +50,37 @@ Snake* resize_snake(Snake* snake, int new_length) {
 void change_colors(Board* board, Snake* snake, Color* color) {
     printf("What would you like to change the colors of?\n");
     printf("1. Snake\n");
-    printf("2. Board\n");
+    printf("2. Board\ninput: ");
     int choice;
     scanf("%d", &choice);
+    getchar(); // Consume the newline character left in the input buffer
     if (choice == 1) {
         set_snake_color(snake, color);
     } else if (choice == 2) {
         set_board_color(board, color);
+    } else {
+        printf("Invalid choice. Please try again.\n");
+        change_colors(board, snake, color);
     }
 }
 
 void set_snake_color(Snake* snake, Color* color) {
     printf("what part of the snake would you like to change?\n");
     printf("1. Body\n");
-    printf("2. Head\n");
+    printf("2. Head\ninput: ");
     int colorChoice;
     int choice;
-    scanf("%d", &choice);
+    scanf("%d[1-2]", &choice);
+    getchar(); // Consume the newline character left in the input buffer
     if (choice == 1) {
         colorChoice = get_color_choice();
         strcpy(snake->color, color->normal[colorChoice]);
     } else if (choice == 2) {
         colorChoice = get_color_choice();
         strcpy(snake->head.color, color->bright[colorChoice]);
+    } else {
+        printf("Invalid choice. Please try again.\n");
+        set_snake_color(snake, color);
     }
 }
 
@@ -80,10 +88,11 @@ void set_board_color(Board* board, Color* color) {
     printf("what part of the board would you like to change?\n");
     printf("1. Border\n");
     printf("2. Background\n");
-    printf("3. Details\n");
+    printf("3. Details\ninput: ");
     int colorChoice;
     int choice;
-    scanf("%d", &choice);
+    scanf("%d[1-3]", &choice);
+    getchar(); // Consume the newline character left in the input buffer
     if (choice == 1) {
         colorChoice = get_color_choice();
         strcpy(board->boarder_color, color->normal[colorChoice]);
@@ -93,6 +102,9 @@ void set_board_color(Board* board, Color* color) {
     } else if (choice == 3) {
         colorChoice = get_color_choice();
         strcpy(board->detial_color, color->bright[colorChoice]);
+    }else {
+        printf("Invalid choice. Please try again.\n");
+        set_board_color(board, color);
     }
 }
 
@@ -105,7 +117,14 @@ int get_color_choice() {
     printf("5. Magenta\n");
     printf("6. Cyan\n");
     printf("7. White\n");
+    printf("input: ");
     int choice;
-    scanf("%d", &choice);
+    scanf("%d[1-7]", &choice);
+    getchar(); // Consume the newline character left in the input buffer
+    if (choice < 1 || choice > 7) {
+        printf("Invalid choice. Please try again.\n");
+        return get_color_choice();
+    }
+    printf("You chose color %d\n", choice);
     return choice - 1; // Return index (0-6)
 }

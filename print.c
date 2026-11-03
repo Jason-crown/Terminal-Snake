@@ -57,22 +57,22 @@ void print_apple(Board board) {
     printf("%s%s%c\x1b[0m", board.background_color, board.apple.color, 235);
 }
 
-int print_menu(Board* board, Snake* snake, bool* pause) {
+int print_menu(Board* board, Snake* snake, bool* pause, Color* colors) {
     printf("\033[%d;%dH", board->height+3, 0);
     printf("Menu:\n");
     printf("(P). Unpause Game\n");
     printf("(S). Game Settings\n");
     printf("(N). New Game\n");
     printf("(Q). Exit\n");
-    return handle_menu(board, snake, pause);
+    return handle_menu(board, snake, pause, colors);
 }
 
-int print_settings(Board* board, Snake* snake, bool* pause) {
+int print_settings(Board* board, Snake* snake, bool* pause, Color* colors) {
     printf("\033[%d;%dH", board->height+3, 0);
     printf("Settings:\n");
     printf("1. Change Board Size\n");
     printf("2. Change Snake Speed\n");
     printf("3. Change game colors\n");
     printf("4. Back to Menu\n");
-    return handle_settings(board, snake, pause);
+    return handle_settings(board, snake, pause, colors);
 }

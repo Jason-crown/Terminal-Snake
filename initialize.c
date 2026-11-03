@@ -11,18 +11,20 @@ thread_args create_thread_args(Board* board, Snake* snake, bool* pause) {
 Color*initialize_colors() {
     Color *colors = malloc(sizeof(Color));
     if (colors == NULL) exit(1);
-    // List of all color inputs //
+    // List of all color inputs //q
     char* color_list[7] = {"red", "yellow", "green", "blue", "purple", "cyan", "white"};
-    memcpy(colors->color_list, color_list, sizeof(color_list));
     // List of all Normal colors //
     char* normal_colors[7] = {"\x1b[31m", "\x1b[33m", "\x1b[32m", "\x1b[34m", "\x1b[35m", "\x1b[36m", "\x1b[37m"};
-    memcpy(colors->normal, normal_colors, sizeof(normal_colors));
     // List of all Bright colors //
     char* bright_colors[7] = {"\x1b[91m", "\x1b[93m", "\x1b[92m", "\x1b[94m", "\x1b[95m", "\x1b[96m", "\x1b[97m"};
-    memcpy(colors->bright, bright_colors, sizeof(bright_colors));
     // List of all Background colors //
     char* background_colors[7] = {"\x1b[41m", "\x1b[43m", "\x1b[42m", "\x1b[44m", "\x1b[45m", "\x1b[46m", "\x1b[47m" };
-    memcpy(colors->background, background_colors, sizeof(background_colors));
+    for (int i = 0; i < 7; i++) {
+        strcpy(colors->color_list[i], color_list[i]);
+        strcpy(colors->normal[i], normal_colors[i]);
+        strcpy(colors->bright[i], bright_colors[i]);
+        strcpy(colors->background[i], background_colors[i]);
+    }
     return colors;
 }
 

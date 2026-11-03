@@ -2,7 +2,7 @@
 
 int handle_menu(Board* board, Snake* snake, bool* pause, Color* colors) {
     if (*pause) {
-        printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+        printf("\033[%d;%dH%s%sPaused\x1b[0m", 0, ((board->width-1)/2), board->boarder_color, board->detial_color);
     }    
     int ch = getch();
     switch (ch) {
@@ -12,7 +12,7 @@ int handle_menu(Board* board, Snake* snake, bool* pause, Color* colors) {
         case 'p':
             *pause = !*pause;
             if (*pause) {
-                printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+                printf("\033[%d;%dH%s%sPaused\x1b[0m", 0, ((board->width-1)/2), board->boarder_color, board->detial_color);
             }
             return -1;      
         case 'M':
@@ -27,6 +27,9 @@ int handle_menu(Board* board, Snake* snake, bool* pause, Color* colors) {
             new_game();
             return -1;
         default:
+            printf("\033[%d;%dH", board->height+3, 0);
+            printf("Invalid input. Please try again.\n");
+            handle_menu(board, snake, pause, colors);
             return -1; // Invalid input
     }
 }
@@ -80,14 +83,14 @@ int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors) {
     switch (ch) {
         case 'M':
             *pause = !*pause;
-            printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+            printf("\033[%d;%dH%s%sPaused\x1b[0m", 0, ((board->width-1)/2), board->boarder_color, board->detial_color);
             print_menu(board, snake, pause, colors);
             return -1;        
         case 'P':
         case 'p':
             *pause = !*pause;
             if (*pause) {
-                printf("\033[%d;%dH\x1b[102m\x1b[94mPaused\x1b[0m", 0, ((board->width-1)/2));
+                printf("\033[%d;%dH%s%sPaused\x1b[0m", 0, ((board->width-1)/2), board->boarder_color, board->detial_color);
             }
             return -1;
         case 'N':
