@@ -35,7 +35,7 @@ void run_game() {
         if (direction != (int)(intptr_t)input_char) {
             direction = (int)(intptr_t)input_char; // Update the direction based on the input
         }*/
-        usleep(20000); // Sleep for 20ms
+        usleep(20000/snake.speed); // Sleep for 20ms
     }
     
 }

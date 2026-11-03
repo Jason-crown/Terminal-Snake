@@ -34,6 +34,7 @@ int handle_menu(Board* board, Snake* snake, bool* pause) {
 int handle_settings(Board* board, Snake* snake, bool* pause) {
     int ch = getch();
     int width = 0, height = 0;
+    int speed = 1;
     switch (ch) {
         case '1':
             print_game_state(*board, *snake);
@@ -48,7 +49,13 @@ int handle_settings(Board* board, Snake* snake, bool* pause) {
             print_game_state(*board, *snake);
             return -1;
         case '2':  
-            //change_Snake_speed();
+            print_game_state(*board, *snake);
+            printf("\033[%d;%dH", board->height+4, 0);
+            printf("Enter new snake speed: ");
+            scanf("%d", &speed);
+            set_snake_speed(snake, speed);
+            *pause = !*pause;
+            print_game_state(*board, *snake);
             return -1;
         case '3':   
             //change_color();
