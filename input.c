@@ -65,6 +65,9 @@ int handle_settings(Board* board, Snake* snake, bool* pause, Color* colors) {
             *pause = !*pause;
             return -1;
         case '4':
+            set_snake_character(snake);
+            return -1;
+        case '5':
             return print_menu(board, snake, pause, colors);
         case 'Q':
         case 'q':

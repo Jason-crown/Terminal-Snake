@@ -135,12 +135,18 @@ void set_snake_character(Snake* snake) {
     printf("2. Head\ninput: ");
     char invalidInputs[] = {'\b', '\t', '\0', '\r', '\n'};
     int choice;
-    scanf("%d", &choice);
+    int input;
+    scanf("%d[1-2]", &choice);
     getchar(); // Consume the newline character left in the input buffer
+    printf("\ninput the new character: ");
+    scanf("%d", &input);
+    getchar();
+    if (choice == 1) snake->character = input;
+    else if (choice == 2) snake->head.character = input;
     for(int i = 0; i < 5; i++) {
-        if(choice == invalidInputs[i]) {
+        if(input == invalidInputs[i]) {
             set_snake_character(snake);
         }
     }
-    snake->character = choice;
+    
 }

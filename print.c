@@ -73,6 +73,7 @@ int print_settings(Board* board, Snake* snake, bool* pause, Color* colors) {
     printf("1. Change Board Size\t\n");
     printf("2. Change Snake Speed\t\n");
     printf("3. Change game colors\t\n");
-    printf("4. Back to Menu\n");
+    printf("4. Change game symbols\t\n");
+    printf("5. Back to Menu\n");
     return handle_settings(board, snake, pause, colors);
 }
