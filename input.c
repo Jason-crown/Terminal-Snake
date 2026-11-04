@@ -85,39 +85,40 @@ int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors) {
         ch = getch(); // Get the actual key code
     }
     switch (ch) {
-        case 'm':
+        case 109: // 'm' key
             *pause = !*pause;
             printf("\033[%d;%dH%s%sPaused\x1b[0m", 0, ((board->width-1)/2), board->boarder_color, board->detial_color);
             print_menu(board, snake, pause, colors);
             return -1;        
-        case 'p':
+        case 112: // 'p' key
             *pause = !*pause;
             if (*pause) {
                 printf("\033[%d;%dH%s%sPaused\x1b[0m", 0, ((board->width-1)/2), board->boarder_color, board->detial_color);
             }
             return -1;
-        case 'n':
+        case 110: // 'N' key
+        case 78: // 'n' key
             free_snake(snake);
             new_game();
             return -1;
-        case 'Q':
-        case 'q':
+        case 81: // 'Q' key
+        case 113: // 'q' key
             quit_game(board, snake);
             return -1;
         case 72: // Up arrow key    
-        case 'W':
+        case 119: // 'W' key
             if (*pause) return -1;
             return 0; // Up
         case 80: // Down arrow key
-        case 'S':
+        case 115: // 'S' key
             if (*pause) return -1;
             return 1; // Down
         case 75: // Left arrow key
-        case 'A':
+        case 97: // 'A' key
             if (*pause) return -1;
             return 2; // Left
         case 77: // Right arrow key
-        case 'D':
+        case 100: // 'D' key
             if (*pause) return -1;
             return 3; // Right
         default:
