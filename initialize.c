@@ -35,6 +35,8 @@ Snake initialize_snake() {
     snake.head.y = 0;
     snake.speed = 1; // Default speed
     snake.head.next = NULL;
+    snake.character = 219;
+    snake.head.character = 219;
     snake.direction = 3; // Default direction (right)
     strcpy(snake.color, "\x1b[31m"); // Initialize color to empty string
     strcpy(snake.head.color, "\x1b[91m"); // Initialize head color to empty string
@@ -46,6 +48,7 @@ Board initialize_board(Snake *snake) {
     board.width = 20;
     board.height = 10;
     board.apple = create_apple(&board, snake);
+    board.background_character = ' ';
     strcpy(board.boarder_color, "\x1b[37m"); // Initialize color to empty string
     strcpy(board.background_color, "\x1b[40m"); // Initialize color to empty string
     strcpy(board.detial_color, "\x1b[37m"); // Initialize color to empty string
