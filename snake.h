@@ -97,8 +97,6 @@ int handle_menu(Board* board, Snake* snake, bool* pause, Color* colors);
 int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors);
 int handle_settings(Board* board, Snake* snake, bool* pause, Color* colors);
 
-
-
 void free_snake(Snake* snake);
 void quit_game(Board* board, Snake* snake);
 thread_args create_thread_args(Board* board, Snake* snake, bool* pause);

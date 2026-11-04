@@ -14,7 +14,7 @@ void run_game() {
     //void* input_char;
     int direction = 3;   
     bool pause = false;
-    
+
     //pthread_t input_thread;
     Color* colors = initialize_colors();
     Snake snake = initialize_snake();
@@ -29,7 +29,7 @@ void run_game() {
             calculate_next_position(&snake, direction);
             if (update_snake(&snake, &board) == -1) {
                 pause = !pause;
-                printf("\033[%d;%dH\x1b[102m\x1b[94mYOU WIN\x1b[0m", 0, ((board.width-1)/2));
+                printf("\033[%d;%dH%s%sYOU WIN\x1b[0m", 0, ((board.width-1)/2), board.boarder_color, board.detial_color);
             }
         }
         /*pthread_join(input_thread, &input_char);
