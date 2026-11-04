@@ -80,6 +80,13 @@ int handle_settings(Board* board, Snake* snake, bool* pause, Color* colors) {
 
 int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors) {
     int ch = getch();
+    int upperCase_character_list[] = {'W', 'A', 'D', 'M', 'P', 'N', 'Q'};
+    for (int i = 0; i < sizeof(upperCase_character_list)/sizeof(upperCase_character_list[0]); i++) {
+        if (ch == upperCase_character_list[i]) {
+            ch += 32; // Convert to lowercase
+            break;
+        }
+    }
     switch (ch) {
         case 'M':
             *pause = !*pause;
@@ -103,18 +110,22 @@ int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors) {
             return -1;
         case 'W':        
         case 'w':
+        case 65: // Up arrow key
             if (*pause) return -1;
             return 0; // Up
         case 'S':
         case 's':
+        case 66: // Down arrow key
             if (*pause) return -1;
             return 1; // Down
         case 'A':
         case 'a':
+        case 68: // Left arrow key
             if (*pause) return -1;
             return 2; // Left
         case 'D':
         case 'd':
+        case 67: // Right arrow key
             if (*pause) return -1;
             return 3; // Right
         default:
