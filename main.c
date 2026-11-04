@@ -23,7 +23,11 @@ void run_game() {
     while (true) {
         //pthread_create(&input_thread, NULL, handle_thread, &args);
         if(!pause) print_game_state(board, snake);
+        if (snake.direction != direction && direction != -2 && direction != -1) {
+            snake.direction = direction; // Update the snake's direction
+        }
         direction = handle_inputs(&board, &snake, &pause, colors);
+        
         if (direction >= 0 && direction <= 3) {
             calculate_next_node_position(&snake, snake.length);
             calculate_next_position(&snake, direction);

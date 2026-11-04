@@ -31,6 +31,7 @@ typedef struct Snake {
     int speed;
     char color[9];
     Head head;
+    int direction; // 0: Up, 1: Down, 2: Left, 3: Right
 }Snake;
 
 typedef struct Apple {

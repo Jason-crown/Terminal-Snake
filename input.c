@@ -80,7 +80,6 @@ int handle_settings(Board* board, Snake* snake, bool* pause, Color* colors) {
 
 int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors) {
     int ch = getch();
-    
     if (ch == 0 || ch == 224) { // Handle arrow keys
         ch = getch(); // Get the actual key code
     }
@@ -107,20 +106,28 @@ int handle_inputs(Board* board, Snake* snake, bool* pause, Color* colors) {
             return -1;
         case 72: // Up arrow key    
         case 119: // 'W' key
-            if (*pause) return -1;
-            return 0; // Up
+            if (snake->direction != 1) { // prevent moving in the opposite direction of the current movement
+                if (*pause) return -1;
+                return 0; // Up
+            }else return -2; // Invalid input
         case 80: // Down arrow key
         case 115: // 'S' key
-            if (*pause) return -1;
-            return 1; // Down
+            if (snake->direction != 0) { // prevent moving in the opposite direction of the current movement
+                if (*pause) return -1;
+                return 1; // Down
+            }else return -2; // Invalid input
         case 75: // Left arrow key
         case 97: // 'A' key
-            if (*pause) return -1;
-            return 2; // Left
+            if (snake->direction != 3) { // prevent moving in the opposite direction of the current movement
+                if (*pause) return -1;
+                return 2; // Left
+            }else return -2; // Invalid input
         case 77: // Right arrow key
         case 100: // 'D' key
-            if (*pause) return -1;
-            return 3; // Right
+            if (snake->direction != 2) { // prevent moving in the opposite direction of the current movement
+                if (*pause) return -1;
+                return 3; // Right
+            }else return -2; // Invalid input
         default:
             return -1; // Invalid input
     }

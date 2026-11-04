@@ -35,6 +35,7 @@ Snake initialize_snake() {
     snake.head.y = 0;
     snake.speed = 1; // Default speed
     snake.head.next = NULL;
+    snake.direction = 3; // Default direction (right)
     strcpy(snake.color, "\x1b[31m"); // Initialize color to empty string
     strcpy(snake.head.color, "\x1b[91m"); // Initialize head color to empty string
     return snake;
