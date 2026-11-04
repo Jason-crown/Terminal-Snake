@@ -10,7 +10,7 @@ void print_board(Board board) {
     for (int i = 0; i < board.height; i++){
         printf("%s%s%c",board.boarder_color, board.detial_color, 186); // Left border
         for (int j = 0; j < board.width; j++) {
-            printf("%s \x1b[0m", board.background_color); // Empty space for the board
+            printf("%s%c\x1b[0m", board.background_color, board.background_character); // Empty space for the board
         }
         printf("%s%s%c\x1b[0m\n", board.boarder_color, board.detial_color, 186); // right border
     }
@@ -26,9 +26,9 @@ void print_segment(Snake snake, int x, int y) {
     // Move the cursor to the specified position
     printf("\033[%d;%dH", y+2, x+2); // ANSI escape code to move cursor
     if(snake.head.x == x && snake.head.y == y){
-        printf("%s%c\x1b[0m", snake.head.color, 219);
+        printf("%s%c\x1b[0m", snake.head.color, snake.head.character); //head
     } else{
-        printf("%s%c\x1b[0m", snake.color, 219);
+        printf("%s%c\x1b[0m", snake.color, snake.character); // body
     }
 }
 

@@ -128,3 +128,19 @@ int get_color_choice() {
     printf("You chose color %d\n", choice);
     return choice - 1; // Return index (0-6)
 }
+
+void set_snake_character(Snake* snake) {
+    printf("what part of the snake would you like to change?\n");
+    printf("1. Body\n");
+    printf("2. Head\ninput: ");
+    char invalidInputs[] = {'\b', '\t', '\0', '\r', '\n'};
+    int choice;
+    scanf("%d", &choice);
+    getchar(); // Consume the newline character left in the input buffer
+    for(int i = 0; i < 5; i++) {
+        if(choice == invalidInputs[i]) {
+            set_snake_character(snake);
+        }
+    }
+    snake->character = choice;
+}
