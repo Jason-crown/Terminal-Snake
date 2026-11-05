@@ -85,6 +85,8 @@ void set_apple_color(Board* board, Color* color);
 int get_color_choice(void);
 
 void set_snake_character(Snake* snake);
+void set_board_character(Board* board);
+
 
 void print_apple(Board board);
 void print_snake(Snake snake);

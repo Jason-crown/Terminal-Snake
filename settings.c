@@ -152,23 +152,19 @@ void set_snake_character(Snake* snake) {
 }
 
 void set_board_character(Board* board) {
-    printf("what part of the snake would you like to change?\n");
-    printf("1. Boarder\n");
-    printf("2. Background\n");
-    printf("3. details\ninput: ");
     char invalidInputs[] = {'\b', '\t', '\0', '\r', '\n'};
-    int choice;
     int input;
-    scanf("%d[1-3]", &choice);
+    printf("Chnage the character of the board background? (1 for yes, 0 for no): ");
+    int choice;
+    scanf("%d", &choice);
     getchar(); // Consume the newline character left in the input buffer
     printf("\ninput the new character: ");
     scanf("%d", &input);
     getchar();
-    if (choice == 1) board = input;
-    else if (choice == 2) snake->head.character = input;
+    if (choice == 1) board->background_character = input;
     for(int i = 0; i < 5; i++) {
         if(input == invalidInputs[i]) {
-            set_snake_character(snake);
+            set_board_character(board);
         }
     }
     
