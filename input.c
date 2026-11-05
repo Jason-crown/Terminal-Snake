@@ -65,7 +65,17 @@ int handle_settings(Board* board, Snake* snake, bool* pause, Color* colors) {
             *pause = !*pause;
             return -1;
         case '4':
-            set_snake_character(snake);
+            printf("What element would you like to change?\n");
+            printf("(1) Snake\n");
+            printf("(2) Board\n");
+            printf("(3) Apple\n");
+            int choice;
+            scanf("%d", &choice);
+            if(choice == 1) set_snake_character(snake);
+            else if (choice == 2) set_board_character(board);
+            else if (choice == 3) set_apple_character(board);
+            *pause = !*pause;
+            print_game_state(*board, *snake);
             return -1;
         case '5':
             return print_menu(board, snake, pause, colors);
