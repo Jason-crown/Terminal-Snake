@@ -169,3 +169,27 @@ void set_board_character(Board* board) {
     }
     
 }
+
+void set_apple_color(Board* board, Color* color) {
+    int colorChoice = get_color_choice();
+    strcpy(board->apple.color, color->bright[colorChoice]);
+}
+
+void set_apple_character(Board* board) {
+    char invalidInputs[] = {'\b', '\t', '\0', '\r', '\n'};
+    int input;
+    printf("Chnage the character of the apple? (1 for yes, 0 for no): ");
+    int choice;
+    scanf("%d", &choice);
+    getchar(); // Consume the newline character left in the input buffer
+    printf("\ninput the new character: ");
+    scanf("%d", &input);
+    getchar();
+    if (choice == 1) board->apple.character = input;
+    for(int i = 0; i < 5; i++) {
+        if(input == invalidInputs[i]) {
+            set_apple_character(board);
+        }
+    }
+    
+}
